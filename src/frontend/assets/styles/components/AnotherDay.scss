@@ -1,0 +1,32 @@
+@import '../Master';
+
+.anotherDay__container {
+  width: 12rem;
+  background-color: $backgroundPrincipal;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+
+  &-titleDay {
+    font-size: $fontSizeTitle;
+    margin-bottom: $marginOurPaddingNormal;
+  }
+
+  &-img {
+    text-align: inherit;
+
+    & img {
+      width: 6rem;
+    }
+  }
+
+  &-temperature {
+    font-size: 1.5rem;
+    margin-top: $marginOurPaddingNormal;
+
+    & span {
+      margin-right: 1rem;
+    }
+  }
+}
