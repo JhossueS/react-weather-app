@@ -4,6 +4,7 @@ import '../assets/styles/components/BurgerMenu.scss';
 
 const BurgerMenu = (props) => {
   const { handleState } = props;
+
   return (
     <div className='burgerMenu__container'>
       <div className='burgerMenu__container-clear-icon'>

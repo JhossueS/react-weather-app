@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import classnames from 'classnames';
 import BurgerMenu from './BurgerMenu';
 import '../assets/styles/components/InfoWeather.scss';
 
@@ -9,10 +8,12 @@ const InfoWeather = () => {
 
   function handledActiveBurgerMenu() {
     setSateSearchLocation(true);
+    document.body.classList.add('isactive');
   };
 
   const handleDisableBurgerMenu = () => {
     setSateSearchLocation(false);
+    document.body.classList.remove('isactive');
   };
 
   let componet;
