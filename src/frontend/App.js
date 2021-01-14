@@ -1,9 +1,9 @@
-/* eslint-disable react/jsx-no-target-blank */
 import React from 'react';
 import InfoWeather from './components/InfoWeather';
 import AnotherDay from './components/AnotherDay';
 import Highlights from './components/Highlights';
-import Buttons from './components/Buttons';
+import ChangeGrades from './components/ChangeGrades';
+import AboutProject from './components/AboutProject';
 
 import './assets/styles/App.scss';
 import './assets/styles/mediaQuerys.scss';
@@ -14,9 +14,7 @@ const App = () => {
     <div className='App'>
       <InfoWeather />
       <div className='App__container'>
-
-        <Buttons />
-
+        <ChangeGrades />
         <div className='App_nextDay__container'>
           <AnotherDay />
           <AnotherDay />
@@ -52,29 +50,7 @@ const App = () => {
             data={998}
           />
         </div>
-        <div className='App_about__container'>
-
-          <div className='App_about__container-contact'>
-            <span className='about-title'>
-              Contact:
-              {'  '}
-            </span>
-            <span> jhossue.d.sacnhez@gmail.com</span>
-          </div>
-          <div className='App_about__container-link'>
-            <span className='about-title'>
-              design and challenge at:
-              {'  '}
-            </span>
-            <a
-              href='https://devchallenges.io/challenges/mM1UIenRhK808W8qmLWv'
-              target='_blank'
-              className='link'
-            >
-              devchallenges.io
-            </a>
-          </div>
-        </div>
+        <AboutProject />
       </div>
     </div>
   );

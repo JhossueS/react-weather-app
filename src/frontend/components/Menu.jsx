@@ -2,15 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../assets/styles/components/BurgerMenu.scss';
 
-const BurgerMenu = (props) => {
-  const { handleState } = props;
+const Menu = (props) => {
+  const { toggleMenu } = props;
 
   return (
     <div className='burgerMenu__container'>
       <div className='burgerMenu__container-clear-icon'>
         <i
           className='material-icons'
-          onClick={handleState}
+          onClick={toggleMenu}
           role='button'
           tabIndex='0'
         >
@@ -43,8 +43,8 @@ const BurgerMenu = (props) => {
 
 };
 
-BurgerMenu.propTypes = {
-  handleState: PropTypes.func.isRequired,
+Menu.propTypes = {
+  toggleMenu: PropTypes.func.isRequired,
 };
 
-export default BurgerMenu;
+export default Menu;

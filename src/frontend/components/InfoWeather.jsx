@@ -1,25 +1,28 @@
 import React, { useState } from 'react';
-import BurgerMenu from './BurgerMenu';
+import Menu from './Menu';
 import '../assets/styles/components/InfoWeather.scss';
 
 const InfoWeather = () => {
 
+  //state
   const [searchLocation, setSateSearchLocation] = useState(false);
 
-  function handledActiveBurgerMenu() {
+  //toggle menu
+  function handleActiveMenu() {
     setSateSearchLocation(true);
     document.body.classList.add('isactive');
   };
 
-  const handleDisableBurgerMenu = () => {
+  const handleDisableMenu = () => {
     setSateSearchLocation(false);
     document.body.classList.remove('isactive');
   };
 
+  // componet to render
   let componet;
 
   if (searchLocation) {
-    componet = <BurgerMenu handleState={handleDisableBurgerMenu} />;
+    componet = <Menu toggleMenu={handleDisableMenu} />;
   } else {
     componet = (
       <div className='infoWeather__container'>
@@ -27,7 +30,7 @@ const InfoWeather = () => {
           <div
             className='infoWeather__container-searchForPlaces-searchBar'
             role='button'
-            onClick={handledActiveBurgerMenu}
+            onClick={handleActiveMenu}
             tabIndex='0'
           >
             <span>Search For Places</span>
@@ -40,12 +43,12 @@ const InfoWeather = () => {
         <div className='infoWeather__container-cloudy-container'>
 
           <div className='infoWeather__container-cloudy-container-groupOne'>
-            <i className='material-icons font left'>wb_cloudy</i>
-            <i className='material-icons font right'>wb_cloudy</i>
+            <i className='material-icons font left'>cloud</i>
+            <i className='material-icons font right'>cloud</i>
           </div>
           <div className='infoWeather__container-cloudy-container-groupOne'>
-            <i className='material-icons font top'>wb_cloudy</i>
-            <i className='material-icons font bottom'>wb_cloudy</i>
+            <i className='material-icons font top'>cloud</i>
+            <i className='material-icons font bottom'>cloud</i>
           </div>
 
         </div>

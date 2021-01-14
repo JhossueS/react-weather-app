@@ -18,4 +18,8 @@
     font-size: $fontSizeNormal;
     cursor: pointer;
   }
+
+  &-grades.isDesactive {
+    background-color: #585676;
+  }
 }
