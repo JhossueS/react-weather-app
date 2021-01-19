@@ -1,41 +1,47 @@
 import React, { useState } from 'react';
 import classnames from 'classnames';
-import '../assets/styles/components/Buttons.scss';
+import Button from './Button';
 
-const Buttons = () => {
+import '../assets/styles/components/ChangeGrades.scss';
+
+const Buttons = (props) => {
+
   //state
   const [isActiveGrades, setIsActiveGrades] = useState(true);
 
   //classname to change active button Degrees Centigrade
-  const isDesactive = classnames('buttons__container-grades', {
-    isDesactive: true,
+  const buttonActive = classnames('buttons__container-grades', {
+    isActive: true,
   });
 
-  //change state and classname
-  const activeDegreesCentigrade = () => {
+  const butttonDisable = classnames('buttons__container-grades', {
+    isDisable: true,
+  });
+
+  //handle stateButton
+
+  const handleActiveCentigrades = () => {
     setIsActiveGrades(true);
   };
 
-  const activeDegreesFahrenheit = () => {
+  const handleActiveFahrenheit = () => {
     setIsActiveGrades(false);
   };
 
   return (
     <div className='buttons__container'>
-      <button
-        type='button'
-        className={isActiveGrades ? 'buttons__container-grades' : isDesactive}
-        onClick={activeDegreesCentigrade}
+      <Button
+        classNamesButton={isActiveGrades ? buttonActive : butttonDisable}
+        onclick={isActiveGrades ? null : handleActiveCentigrades}
       >
         °C
-      </button>
-      <button
-        type='button'
-        className={isActiveGrades ? isDesactive : 'buttons__container-grades'}
-        onClick={activeDegreesFahrenheit}
+      </Button>
+      <Button
+        classNamesButton={isActiveGrades ? butttonDisable : buttonActive}
+        onclick={isActiveGrades ? handleActiveFahrenheit : null}
       >
         °F
-      </button>
+      </Button>
     </div>
   );
 };

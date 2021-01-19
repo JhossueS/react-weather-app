@@ -12,14 +12,16 @@
     align-self: center;
     border-radius: 5rem;
     margin: 0 1rem;
-    outline: none;
-    border: none;
-    background-color: $colorFont;
+    border: 1px solid transparent;
     font-size: $fontSizeNormal;
-    cursor: pointer;
   }
 
-  &-grades.isDesactive {
+  &-grades.isDisable {
+    cursor: pointer;
     background-color: #585676;
+  }
+
+  &-grades.isActive {
+    background-color: $colorFont;
   }
 }

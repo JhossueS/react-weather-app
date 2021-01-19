@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import InfoWeather from './components/InfoWeather';
 import AnotherDay from './components/AnotherDay';
 import Highlights from './components/Highlights';
@@ -7,12 +7,46 @@ import AboutProject from './components/AboutProject';
 
 import './assets/styles/App.scss';
 import './assets/styles/mediaQuerys.scss';
+import Menu from './components/Menu';
 
 const App = () => {
+  //handle state and menu
+  const [menu, setMenu] = useState(true);
 
+  const handleActiveMenu = () => {
+    setMenu(false);
+    document.body.classList.add('isactive');
+  };
+
+  const handleDisableMenu = () => {
+    setMenu(true);
+    document.body.classList.remove('isactive');
+  };
+
+  // search location
+
+  const locactionData = [
+    { locaction: 'Cuba' },
+    { locaction: 'Madrid' },
+    { locaction: 'Venezuela' },
+  ];
+
+  const [searchLocaction, setSearchLocaction] = useState(locactionData);
+
+  const onSearchLocaction = (newLocaction) => {
+    setSearchLocaction([...searchLocaction, newLocaction]);
+    console.log(newLocaction);
+    setMenu(true);
+  };
+
+  console.log(searchLocaction);
   return (
     <div className='App'>
-      <InfoWeather />
+      {
+        menu ?
+          <InfoWeather handleActiveMenu={handleActiveMenu} /> :
+          <Menu handleDisableMenu={handleDisableMenu} searchLocaction={onSearchLocaction} />
+      }
       <div className='App__container'>
         <ChangeGrades />
         <div className='App_nextDay__container'>
