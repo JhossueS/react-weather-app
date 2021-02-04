@@ -1,49 +1,72 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import classnames from 'classnames';
 import Button from './Button';
 
 import '../assets/styles/components/ChangeGrades.scss';
 
-const Buttons = (props) => {
+class Buttons extends Component {
+  constructor(props) {
+    super(props);
 
-  //state
-  const [isActiveGrades, setIsActiveGrades] = useState(true);
+    this.state = {
+      isActiveGrades: true,
+    };
+    this.buttonActive = this.buttonActive.bind(this);
+    this.butttonDisable = this.butttonDisable.bind(this);
+    this.handleActiveCentigrades = this.handleActiveCentigrades.bind(this);
+    this.handleActiveFahrenheit = this.handleActiveFahrenheit.bind(this);
+  };
 
   //classname to change active button Degrees Centigrade
-  const buttonActive = classnames('buttons__container-grades', {
-    isActive: true,
-  });
+  buttonActive() {
+    this.classActive = classnames('buttons__container-grades', {
+      isActive: true,
+    });
+    return this.classActive;
+  }
 
-  const butttonDisable = classnames('buttons__container-grades', {
-    isDisable: true,
-  });
+  butttonDisable() {
+    this.classDisable = classnames('buttons__container-grades', {
+      isDisable: true,
+    });
+    return this.classDisable;
+  }
 
   //handle stateButton
 
-  const handleActiveCentigrades = () => {
-    setIsActiveGrades(true);
+  handleActiveCentigrades() {
+    this.setState({
+      isActiveGrades: true,
+    });
   };
 
-  const handleActiveFahrenheit = () => {
-    setIsActiveGrades(false);
+  handleActiveFahrenheit() {
+    this.setState({
+      isActiveGrades: false,
+    });
   };
 
-  return (
-    <div className='buttons__container'>
-      <Button
-        classNamesButton={isActiveGrades ? buttonActive : butttonDisable}
-        onclick={isActiveGrades ? null : handleActiveCentigrades}
-      >
-        °C
-      </Button>
-      <Button
-        classNamesButton={isActiveGrades ? butttonDisable : buttonActive}
-        onclick={isActiveGrades ? handleActiveFahrenheit : null}
-      >
-        °F
-      </Button>
-    </div>
-  );
+  render() {
+
+    const { isActiveGrades } = this.state;
+
+    return (
+      <div className='buttons__container'>
+        <Button
+          classNamesButton={isActiveGrades ? this.buttonActive() : this.butttonDisable()}
+          onclick={isActiveGrades ? null : this.handleActiveCentigrades}
+        >
+          °C
+        </Button>
+        <Button
+          classNamesButton={isActiveGrades ? this.butttonDisable() : this.buttonActive()}
+          onclick={isActiveGrades ? this.handleActiveFahrenheit : null}
+        >
+          °F
+        </Button>
+      </div>
+    );
+  }
 };
 
 export default Buttons;
