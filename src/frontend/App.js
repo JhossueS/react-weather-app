@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { getData } from './services/getDataApi';
 import InfoWeather from './components/InfoWeather';
 import AnotherDay from './components/AnotherDay';
 import Highlights from './components/Highlights';
@@ -15,14 +16,25 @@ class App extends Component {
     super(props);
     this.handleActiveMenu = this.handleActiveMenu.bind(this);
     this.handleDisableMenu = this.handleDisableMenu.bind(this);
-    this.onSearchLocaction = this.onSearchLocaction.bind(this);
+    this.onSearchNewLocaction = this.onSearchNewLocaction.bind(this);
     this.state = {
       menu: true,
-      locactionCity: [
-        'radio',
-        'gugu',
-      ],
+      newLocactionCity: {},
+      isFetch: true,
     };
+  }
+
+  componentDidMount() {
+    this.onSearchLocaction('london');
+  }
+
+  async onSearchLocaction(nameCity) {
+    const data = await getData(nameCity);
+
+    this.setState({
+      newLocactionCity: data,
+      isFetch: false,
+    });
   }
 
   handleActiveMenu() {
@@ -30,30 +42,37 @@ class App extends Component {
       menu: false,
     });
     document.body.classList.add('isactive');
-  };
+  }
 
   handleDisableMenu() {
     this.setState({
       menu: true,
     });
     document.body.classList.remove('isactive');
-  };
+  }
 
-  onSearchLocaction(newLocaction) {
+  async onSearchNewLocaction(newLocaction) {
+    console.log(newLocaction.locaction.toLowerCase());
+    const data = await getData(newLocaction.locaction.toLowerCase());
     this.setState({
-      locactionCity: newLocaction.locaction,
+      newLocactionCity: data,
+      menu: true,
     });
-  };
+  }
 
   render() {
-    const { menu } = this.state;
+    const { menu, isFetch, newLocactionCity } = this.state;
+
+    if (isFetch) {
+      return <h1>Loading</h1>;
+    }
 
     return (
       <div className='App'>
         {
           menu ?
             <InfoWeather handleActiveMenu={this.handleActiveMenu} /> :
-            <Menu handleDisableMenu={this.handleDisableMenu} searchLocaction={this.onSearchLocaction} />
+            <Menu handleDisableMenu={this.handleDisableMenu} searchLocaction={this.onSearchNewLocaction} />
         }
         <div className='App__container'>
           <ChangeGrades />

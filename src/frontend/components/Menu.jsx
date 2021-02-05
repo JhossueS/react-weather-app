@@ -10,7 +10,6 @@ const Menu = (props) => {
   const { register, handleSubmit, errors } = useForm();
 
   const onSubmit = (data, e) => {
-    console.log(data, 'menu');
 
     searchLocaction(data);
 
