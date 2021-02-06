@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { Component } from 'react';
 import { getData } from './services/getDataApi';
 import InfoWeather from './components/InfoWeather';
@@ -58,10 +59,13 @@ class App extends Component {
       newLocactionCity: data,
       menu: true,
     });
+    document.body.classList.remove('isactive');
   }
 
   render() {
     const { menu, isFetch, newLocactionCity } = this.state;
+
+    const { dataToday, nameCity, dataWeekDays } = newLocactionCity;
 
     if (isFetch) {
       return <h1>Loading</h1>;
@@ -70,18 +74,30 @@ class App extends Component {
     return (
       <div className='App'>
         {
-          menu ?
-            <InfoWeather handleActiveMenu={this.handleActiveMenu} /> :
-            <Menu handleDisableMenu={this.handleDisableMenu} searchLocaction={this.onSearchNewLocaction} />
+          menu ? (
+            <InfoWeather
+              handleActiveMenu={this.handleActiveMenu}
+              nameCity={nameCity}
+              maxTemp={dataToday.max_temp}
+            />
+          ) : (
+            <Menu
+              handleDisableMenu={this.handleDisableMenu}
+              searchLocaction={this.onSearchNewLocaction}
+            />
+          )
         }
         <div className='App__container'>
           <ChangeGrades />
           <div className='App_nextDay__container'>
-            <AnotherDay />
-            <AnotherDay />
-            <AnotherDay />
-            <AnotherDay />
-            <AnotherDay />
+            {
+              dataWeekDays.map((item) => (
+                <AnotherDay
+                  key={item.id}
+                  {...item}
+                />
+              ))
+            }
           </div>
           <div className='App_title__container'>
             <h2>Today&apos;s Highlights</h2>

@@ -1,9 +1,14 @@
 import React from 'react';
+import moment from 'moment';
 import '../assets/styles/components/InfoWeather.scss';
 
 const InfoWeather = (props) => {
 
-  const { handleActiveMenu } = props;
+  const {
+    handleActiveMenu,
+    nameCity,
+    maxTemp,
+  } = props;
 
   return (
     <div className='infoWeather__container'>
@@ -38,22 +43,22 @@ const InfoWeather = (props) => {
         <img src='https://www.metaweather.com/static/img/weather/s.svg' alt='' />
 
         <div className='infoWeather__container-weather-details'>
-          <span className='infoWeather__container-weather-details-number'>15</span>
+          <span className='infoWeather__container-weather-details-number'>{maxTemp.toFixed(2)}</span>
           <span className='infoWeather__container-weather-details-grade'>°C</span>
         </div>
         <div className='infoWeather__container-weather-details-content'>
-          <p>Shower</p>
+          <p>{nameCity}</p>
           <div className='infoWeather__container-weather-details-content-day'>
             <span>Today</span>
             <span>•</span>
-            <span>Fri, 5 Jun</span>
+            <span>{moment().format('ddd, DD MMM')}</span>
           </div>
           <div className='infoWeather__container-weather-details-content-location'>
             <span className='infoWeather__container-weather-details-content-location-point'>
               <i className='material-icons'>location_on</i>
             </span>
             <span className='infoWeather__container-weather-details-content-location-place'>
-              Helsinki
+              {nameCity}
             </span>
           </div>
         </div>
