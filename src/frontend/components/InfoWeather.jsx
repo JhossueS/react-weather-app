@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 import '../assets/styles/components/InfoWeather.scss';
 
@@ -66,6 +67,12 @@ const InfoWeather = (props) => {
     </div>
   );
 
+};
+
+InfoWeather.propTypes = {
+  nameCity: PropTypes.string.isRequired,
+  maxTemp: PropTypes.number.isRequired,
+  handleActiveMenu: PropTypes.func.isRequired,
 };
 
 export default InfoWeather;

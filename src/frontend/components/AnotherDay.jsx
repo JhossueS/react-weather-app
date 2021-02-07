@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 import React from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 import '../assets/styles/components/AnotherDay.scss';
 
@@ -28,6 +29,13 @@ const AnotherDay = (props) => {
       </div>
     </div>
   );
+};
+
+AnotherDay.propTypes = {
+  max_temp: PropTypes.number.isRequired,
+  min_temp: PropTypes.number.isRequired,
+  weather_state_abbr: PropTypes.string.isRequired,
+  applicable_date: PropTypes.string.isRequired,
 };
 
 export default AnotherDay;

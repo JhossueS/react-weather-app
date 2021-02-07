@@ -68,6 +68,7 @@ const Menu = (props) => {
 
 Menu.propTypes = {
   handleDisableMenu: PropTypes.func.isRequired,
+  searchLocaction: PropTypes.func.isRequired,
 };
 
 export default Menu;

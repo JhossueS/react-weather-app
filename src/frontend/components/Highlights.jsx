@@ -26,6 +26,8 @@ const Highlights = (props) => {
 
 Highlights.propTypes = {
   data: PropTypes.number.isRequired,
+  description: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default Highlights;

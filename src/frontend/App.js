@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { getData } from './services/getDataApi';
 import InfoWeather from './components/InfoWeather';
 import AnotherDay from './components/AnotherDay';
+import Title from './components/Title';
 import Highlights from './components/Highlights';
 import ChangeGrades from './components/ChangeGrades';
 import AboutProject from './components/AboutProject';
@@ -99,9 +100,9 @@ class App extends Component {
               ))
             }
           </div>
-          <div className='App_title__container'>
+          <Title className='App_title__container'>
             <h2>Today&apos;s Highlights</h2>
-          </div>
+          </Title>
           <div className='App_today_highlights'>
             <Highlights
               additionalItem
