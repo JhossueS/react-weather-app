@@ -1,0 +1,19 @@
+{
+  "name": "weather-app-react",
+  "version": 2.0,
+  "builds":[
+    {
+      "src": "index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.js"
+    }
+  ],
+  "env": {
+    "KEY": "@apikey"
+  }
+}
