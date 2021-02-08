@@ -1,14 +1,13 @@
 import axios from 'axios';
 
-const urlSearchId = 'http://localhost:3003/searchidcity/';
-const urlSearchData = 'http://localhost:3003/locactionid/';
+const urlBase = 'https://backend-weather-app.vercel.app/';
 
 export async function getData(nameCity) {
 
   try {
-    const responseId = await axios.get(`${urlSearchId}${nameCity}`);
+    const responseId = await axios.get(`${urlBase}searchidcity/${nameCity}`);
 
-    const responseData = await axios.get(`${urlSearchData}${responseId.data.data[0].woeid}`);
+    const responseData = await axios.get(`${urlBase}locactionid/${responseId.data.data[0].woeid}`);
 
     const { data } = responseData;
     return data;

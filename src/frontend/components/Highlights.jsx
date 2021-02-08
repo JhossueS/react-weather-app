@@ -17,7 +17,7 @@ const Highlights = (props) => {
       </div>
       <div className='highlights__container-additional '>
         {
-          additionalItem ? (progressBar ? <ProgressBar humedity={81} /> : <WindStatus />) : null
+          additionalItem ? (progressBar ? <ProgressBar humedity={data} /> : <WindStatus />) : null
         }
       </div>
     </div>

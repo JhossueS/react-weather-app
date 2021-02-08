@@ -4,6 +4,7 @@ import { getData } from './services/getDataApi';
 import InfoWeather from './components/InfoWeather';
 import AnotherDay from './components/AnotherDay';
 import Title from './components/Title';
+import Loading from './components/Loading';
 import Highlights from './components/Highlights';
 import ChangeGrades from './components/ChangeGrades';
 import AboutProject from './components/AboutProject';
@@ -69,7 +70,7 @@ class App extends Component {
     const { dataToday, nameCity, dataWeekDays } = newLocactionCity;
 
     if (isFetch) {
-      return <h1>Loading</h1>;
+      return <Loading />;
     }
 
     return (
@@ -108,24 +109,24 @@ class App extends Component {
               additionalItem
               title='Wind Status'
               description='mph'
-              data={8}
+              data={dataToday.wind_speed.toFixed(2)}
             />
             <Highlights
               additionalItem
               progressBar
               title='Humidity'
               description='%'
-              data={84}
+              data={dataToday.humidity}
             />
             <Highlights
               title='Visibility'
               description='miles'
-              data={7.7}
+              data={dataToday.visibility.toFixed(2)}
             />
             <Highlights
               title='Air Pressure'
               description='mb'
-              data={998}
+              data={dataToday.air_pressure}
             />
           </div>
           <AboutProject />
