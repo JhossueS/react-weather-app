@@ -146,6 +146,19 @@
     "no-void": 0,
     "no-warning-comments": 0,
     "no-with": 2,
+    "no-mixed-operators": [
+      "error",
+      {
+          "groups": [
+              ["+", "-", "*", "/", "%", "**"],
+              ["&", "|", "^", "~", "<<", ">>", ">>>"],
+              ["==", "!=", "===", "!==", ">", ">=", "<", "<="],
+              ["&&", "||"],
+              ["in", "instanceof"]
+          ],
+          "allowSamePrecedence": true
+      }
+    ],
     "object-curly-newline": 0,
     "object-curly-spacing": [2, "always"],
     "one-var": 0,

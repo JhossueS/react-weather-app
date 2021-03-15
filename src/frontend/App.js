@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { getData } from './services/getDataApi';
 import InfoWeather from './components/InfoWeather';
 import AnotherDay from './components/AnotherDay';
+import AnotherDayContainer from './components/AnotherDayContainer';
 import Title from './components/Title';
 import Loading from './components/Loading';
 import Highlights from './components/Highlights';
@@ -20,9 +21,13 @@ class App extends Component {
     this.handleActiveMenu = this.handleActiveMenu.bind(this);
     this.handleDisableMenu = this.handleDisableMenu.bind(this);
     this.onSearchNewLocaction = this.onSearchNewLocaction.bind(this);
+    this.handleFahrenheit = this.handleFahrenheit.bind(this);
+    this.handleCentigrates = this.handleCentigrates.bind(this);
     this.state = {
       menu: true,
       newLocactionCity: {},
+      dataToday: [],
+      nameCity: '',
       isFetch: true,
     };
   }
@@ -31,14 +36,20 @@ class App extends Component {
     this.onSearchLocaction('london');
   }
 
+  //search inital city
+
   async onSearchLocaction(nameCity) {
     const data = await getData(nameCity);
 
     this.setState({
       newLocactionCity: data,
+      dataToday: [data.dataToday],
+      nameCity: data.nameCity,
       isFetch: false,
     });
   }
+
+  //handle menu
 
   handleActiveMenu() {
     this.setState({
@@ -54,6 +65,8 @@ class App extends Component {
     document.body.classList.remove('isactive');
   }
 
+  //Search new city
+
   async onSearchNewLocaction(newLocaction) {
     console.log(newLocaction.locaction.toLowerCase());
     const data = await getData(newLocaction.locaction.toLowerCase());
@@ -64,10 +77,42 @@ class App extends Component {
     document.body.classList.remove('isactive');
   }
 
-  render() {
-    const { menu, isFetch, newLocactionCity } = this.state;
+  // change Grades
 
-    const { dataToday, nameCity, dataWeekDays } = newLocactionCity;
+  handleFahrenheit() {
+    const { dataToday } = this.state;
+
+    this.fahrenheit = (dataToday[0].max_temp * 9 / 5) + 32;
+
+    const tempFahrenheit = ({
+      ...dataToday[0],
+      max_temp: this.fahrenheit,
+    });
+
+    this.setState({
+      dataToday: [tempFahrenheit],
+    });
+  }
+
+  handleCentigrates() {
+    const { dataToday } = this.state;
+
+    this.centigrate = (dataToday[0].max_temp - 32) * 5 / 9;
+
+    const tempCentigrate = ({
+      ...dataToday[0],
+      max_temp: this.centigrate.toFixed(2),
+    });
+
+    this.setState({
+      dataToday: [tempCentigrate],
+    });
+  }
+
+  render() {
+    const { menu, isFetch, newLocactionCity, dataToday, nameCity } = this.state;
+
+    const { dataWeekDays } = newLocactionCity;
 
     if (isFetch) {
       return <Loading />;
@@ -80,7 +125,8 @@ class App extends Component {
             <InfoWeather
               handleActiveMenu={this.handleActiveMenu}
               nameCity={nameCity}
-              maxTemp={dataToday.max_temp}
+              weatherStateName={dataToday[0].weather_state_name}
+              maxTemp={dataToday[0].max_temp}
             />
           ) : (
             <Menu
@@ -90,8 +136,11 @@ class App extends Component {
           )
         }
         <div className='App__container'>
-          <ChangeGrades />
-          <div className='App_nextDay__container'>
+          <ChangeGrades
+            onFahrenheit={this.handleFahrenheit}
+            onCentigrates={this.handleCentigrates}
+          />
+          <AnotherDayContainer>
             {
               dataWeekDays.map((item) => (
                 <AnotherDay
@@ -100,16 +149,16 @@ class App extends Component {
                 />
               ))
             }
-          </div>
+          </AnotherDayContainer>
           <Title className='App_title__container'>
             <h2>Today&apos;s Highlights</h2>
           </Title>
-          <div className='App_today_highlights'>
+          {/* <div className='App_today_highlights'>
             <Highlights
               additionalItem
               title='Wind Status'
               description='mph'
-              data={dataToday.wind_speed.toFixed(2)}
+              data={Math.floor(dataToday.wind_speed)}
             />
             <Highlights
               additionalItem
@@ -121,14 +170,14 @@ class App extends Component {
             <Highlights
               title='Visibility'
               description='miles'
-              data={dataToday.visibility.toFixed(2)}
+              data={Math.floor(dataToday.visibility)}
             />
             <Highlights
               title='Air Pressure'
               description='mb'
               data={dataToday.air_pressure}
             />
-          </div>
+          </div> */}
           <AboutProject />
         </div>
       </div>

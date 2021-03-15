@@ -9,6 +9,7 @@ const InfoWeather = (props) => {
     handleActiveMenu,
     nameCity,
     maxTemp,
+    weatherStateName
   } = props;
 
   return (
@@ -48,7 +49,7 @@ const InfoWeather = (props) => {
           <span className='infoWeather__container-weather-details-grade'>°C</span>
         </div>
         <div className='infoWeather__container-weather-details-content'>
-          <p>{nameCity}</p>
+          <p>{weatherStateName}</p>
           <div className='infoWeather__container-weather-details-content-day'>
             <span>Today</span>
             <span>•</span>

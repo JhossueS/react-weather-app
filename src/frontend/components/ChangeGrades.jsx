@@ -35,12 +35,14 @@ class Buttons extends Component {
   //handle stateButton
 
   handleActiveCentigrades() {
+    this.props.onCentigrates();
     this.setState({
       isActiveGrades: true,
     });
   };
 
   handleActiveFahrenheit() {
+    this.props.onFahrenheit();
     this.setState({
       isActiveGrades: false,
     });
