@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
-import '../assets/styles/components/InfoWeather.scss';
+import '../assets/styles/components/WeatherInfo.scss';
 
 const InfoWeather = (props) => {
 
@@ -9,20 +8,20 @@ const InfoWeather = (props) => {
     handleActiveMenu,
     nameCity,
     maxTemp,
-    weatherStateName
+    weatherStateName,
   } = props;
 
   return (
     <div className='infoWeather__container'>
       <div className='infoWeather__container-searchForPlaces'>
-        <div
+        <button
           className='infoWeather__container-searchForPlaces-searchBar'
-          role='button'
-          onClick={() => { handleActiveMenu(); }}
-          tabIndex='0'
+          onClick={handleActiveMenu}
+          type='button'
+
         >
-          <span>Search For Places</span>
-        </div>
+          Search For Places
+        </button>
         <div className='infoWeather__container-searchForPlaces-location'>
           <i className='material-icons'>gps_fixed</i>
         </div>
@@ -45,7 +44,7 @@ const InfoWeather = (props) => {
         <img src='https://www.metaweather.com/static/img/weather/s.svg' alt='' />
 
         <div className='infoWeather__container-weather-details'>
-          <span className='infoWeather__container-weather-details-number'>{maxTemp.toFixed(2)}</span>
+          <span className='infoWeather__container-weather-details-number'>{maxTemp}</span>
           <span className='infoWeather__container-weather-details-grade'>°C</span>
         </div>
         <div className='infoWeather__container-weather-details-content'>
@@ -53,7 +52,7 @@ const InfoWeather = (props) => {
           <div className='infoWeather__container-weather-details-content-day'>
             <span>Today</span>
             <span>•</span>
-            <span>{moment().format('ddd, DD MMM')}</span>
+            <span>23, 14 san</span>
           </div>
           <div className='infoWeather__container-weather-details-content-location'>
             <span className='infoWeather__container-weather-details-content-location-point'>
