@@ -8,12 +8,32 @@ class Sidebar extends React.Component {
 
     this.handleActiveMenu = this.handleActiveMenu.bind(this);
     this.handleDisableMenu = this.handleDisableMenu.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       menu: false,
+      form: {
+        cityName: '',
+      },
     };
 
   }
 
+  //handle form
+
+  handleSubmit(e) {
+    e.preventDefault();
+  }
+
+  handleChange(e) {
+    this.setState({
+      form: {
+        [e.target.name]: e.target.value,
+      },
+    });
+  }
+
+  //handle menu
   handleActiveMenu() {
     this.setState({
       menu: true,
@@ -27,13 +47,16 @@ class Sidebar extends React.Component {
   }
 
   render() {
-    const { menu } = this.state;
+    const { menu, form } = this.state;
     return (
       <>
         {
           menu ? (
             <Menu
               handleDisableMenu={this.handleDisableMenu}
+              onSubmit={this.handleSubmit}
+              onChange={this.handleChange}
+              formValues={form}
             />
           ) : (
             <WeatherInfo

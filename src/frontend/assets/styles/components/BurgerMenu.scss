@@ -3,6 +3,7 @@
 .burgerMenu__container {
   background-color: $backgroundPrincipal;
   width: 100%;
+  max-width: 45rem;
   height: 100vh;
 
   &-clear-icon {

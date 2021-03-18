@@ -1,7 +1,6 @@
 /* eslint-disable camelcase */
 import React from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 import '../assets/styles/components/AnotherDay.scss';
 
 const AnotherDay = (props) => {
@@ -13,7 +12,7 @@ const AnotherDay = (props) => {
   } = props;
   return (
     <div className='anotherDay__container'>
-      <p className='anotherDay__container-titleDay'>{moment(applicable_date).format('ddd, DD MMM')}</p>
+      <p className='anotherDay__container-titleDay' />
       <figure className='anotherDay__container-img'>
         <img src={`https://www.metaweather.com/static/img/weather/${weather_state_abbr}.svg`} alt='' />
       </figure>

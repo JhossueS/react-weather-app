@@ -1,21 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useForm } from 'react-hook-form';
 
 import '../assets/styles/components/BurgerMenu.scss';
 
 const Menu = (props) => {
-  const { handleDisableMenu, searchLocaction } = props;
-
-  const { register, handleSubmit, errors } = useForm();
-
-  const onSubmit = (data, e) => {
-
-    searchLocaction(data);
-
-    //clear input
-    e.target.reset();
-  };
+  const { handleDisableMenu, onSubmit, onChange, formValues } = props;
 
   return (
     <div className='burgerMenu__container'>
@@ -30,22 +19,16 @@ const Menu = (props) => {
         </i>
       </div>
       <div className='burgerMenu__container-searchBar'>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={onSubmit}>
           <div className='burgerMenu__container-searchBar-groupOne'>
             <i className='material-icons search'>search</i>
             <input
               type='text'
-              name='locaction'
+              name='cityName'
               placeholder='search locaction'
+              onChange={onChange}
               className='input text'
-              ref={
-                register({
-                  required: {
-                    value: true,
-                    message: 'campo requerido',
-                  },
-                })
-              }
+              value={formValues.cityName}
             />
           </div>
           <input
@@ -56,7 +39,6 @@ const Menu = (props) => {
           />
         </form>
       </div>
-      <span>{errors?.locaction?.message}</span>
       <div className='burgerMenu__container-menu-location'>
         <p>london</p>
         <i className='material-icons'>keyboard_arrow_down</i>
@@ -68,7 +50,6 @@ const Menu = (props) => {
 
 Menu.propTypes = {
   handleDisableMenu: PropTypes.func.isRequired,
-  searchLocaction: PropTypes.func.isRequired,
 };
 
 export default Menu;
