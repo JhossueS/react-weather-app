@@ -4,20 +4,22 @@ import PropTypes from 'prop-types';
 import '../assets/styles/components/BurgerMenu.scss';
 
 const Menu = (props) => {
-  const { handleDisableMenu, onSubmit, onChange, formValues } = props;
+  const { handleDisableMenu, onSubmit, onChange, formValues, className, closeMenu } = props;
 
   return (
-    <div className='burgerMenu__container'>
-      <div className='burgerMenu__container-clear-icon'>
-        <i
-          className='material-icons'
-          onClick={() => { handleDisableMenu(); }}
-          role='button'
-          tabIndex='0'
-        >
-          clear
-        </i>
-      </div>
+    <div className={className || 'burgerMenu__container'}>
+      {closeMenu && (
+        <div className='burgerMenu__container-clear-icon'>
+          <i
+            className='material-icons'
+            onClick={handleDisableMenu}
+            role='button'
+            tabIndex='0'
+          >
+            clear
+          </i>
+        </div>
+      )}
       <div className='burgerMenu__container-searchBar'>
         <form onSubmit={onSubmit}>
           <div className='burgerMenu__container-searchBar-groupOne'>
@@ -28,7 +30,7 @@ const Menu = (props) => {
               placeholder='search locaction'
               onChange={onChange}
               className='input text'
-              value={formValues.cityName}
+              value={formValues?.cityName}
             />
           </div>
           <input

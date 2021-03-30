@@ -7,9 +7,25 @@ const InfoWeather = (props) => {
   const {
     handleActiveMenu,
     nameCity,
-    maxTemp,
+    theTemp,
     weatherStateName,
+    weatherStateAbbr,
+    created,
   } = props;
+
+  const date = new Date(created);
+
+  const dateMonthFormat = new Intl.DateTimeFormat('en', {
+    month: 'short',
+  });
+
+  const dateDayFormat = new Intl.DateTimeFormat('en', {
+    day: '2-digit',
+  });
+
+  const dateWeekdayFormat = new Intl.DateTimeFormat('en', {
+    weekday: 'short',
+  });
 
   return (
     <div className='infoWeather__container'>
@@ -41,10 +57,10 @@ const InfoWeather = (props) => {
       </div>
 
       <div className='infoWeather__container-weather'>
-        <img src='https://www.metaweather.com/static/img/weather/s.svg' alt='' />
+        <img src={`https://www.metaweather.com/static/img/weather/${weatherStateAbbr}.svg`} alt='' />
 
         <div className='infoWeather__container-weather-details'>
-          <span className='infoWeather__container-weather-details-number'>{maxTemp}</span>
+          <span className='infoWeather__container-weather-details-number'>{Math.floor(theTemp)}</span>
           <span className='infoWeather__container-weather-details-grade'>°C</span>
         </div>
         <div className='infoWeather__container-weather-details-content'>
@@ -52,7 +68,7 @@ const InfoWeather = (props) => {
           <div className='infoWeather__container-weather-details-content-day'>
             <span>Today</span>
             <span>•</span>
-            <span>23, 14 san</span>
+            <span>{`${dateWeekdayFormat.format(date)}, ${dateDayFormat.format(date)} ${dateMonthFormat.format(date)}`}</span>
           </div>
           <div className='infoWeather__container-weather-details-content-location'>
             <span className='infoWeather__container-weather-details-content-location-point'>
@@ -71,8 +87,10 @@ const InfoWeather = (props) => {
 
 InfoWeather.propTypes = {
   nameCity: PropTypes.string.isRequired,
-  maxTemp: PropTypes.number.isRequired,
+  theTemp: PropTypes.number.isRequired,
   handleActiveMenu: PropTypes.func.isRequired,
+  weatherStateName: PropTypes.string.isRequired,
+  weatherStateAbbr: PropTypes.string.isRequired,
 };
 
 export default InfoWeather;

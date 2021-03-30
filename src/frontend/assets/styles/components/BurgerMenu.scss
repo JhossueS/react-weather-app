@@ -71,3 +71,17 @@
 .search {
   color: $colorfontText;
 }
+
+.city-notFound-container {
+  background-color: $backgroundPrincipal;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &.h1 {
+    text-align: center;
+    letter-spacing: 0.5rem;
+    font-size: $fontSizeTitle;
+  }
+}

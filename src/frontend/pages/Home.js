@@ -6,12 +6,25 @@ import AboutProject from '../components/AboutProject';
 import Sidebar from '../components/Sidebar';
 
 const home = (props) => {
+  const {
+    handleSumbit,
+    formValues,
+    handleChange,
+    dataWeather,
+  } = props;
+
   return (
     <div className='App'>
-      <Sidebar />
+      <Sidebar
+        onSubmit={handleSumbit}
+        formValues={formValues}
+        handleChange={handleChange}
+        dataWeatherToday={dataWeather.dataToday}
+        dataCityName={dataWeather.nameCity}
+      />
       <div className='App__container'>
         <ChangeGrades />
-        <Title className='App_title__container'>
+        {/*  <Title className='App_title__container'>
           <h2>Today&apos;s Highlights</h2>
         </Title>
         <div className='App_today_highlights'>
@@ -35,7 +48,7 @@ const home = (props) => {
             description='mb'
           />
         </div>
-        <AboutProject />
+        <AboutProject /> */}
       </div>
     </div>
   );

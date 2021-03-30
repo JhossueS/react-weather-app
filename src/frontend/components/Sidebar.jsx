@@ -8,29 +8,9 @@ class Sidebar extends React.Component {
 
     this.handleActiveMenu = this.handleActiveMenu.bind(this);
     this.handleDisableMenu = this.handleDisableMenu.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       menu: false,
-      form: {
-        cityName: '',
-      },
     };
-
-  }
-
-  //handle form
-
-  handleSubmit(e) {
-    e.preventDefault();
-  }
-
-  handleChange(e) {
-    this.setState({
-      form: {
-        [e.target.name]: e.target.value,
-      },
-    });
   }
 
   //handle menu
@@ -47,20 +27,35 @@ class Sidebar extends React.Component {
   }
 
   render() {
-    const { menu, form } = this.state;
+    const { menu } = this.state;
+
+    const {
+      onSubmit,
+      handleChange,
+      formValues,
+      dataWeatherToday,
+      dataCityName,
+    } = this.props;
+
     return (
       <>
         {
           menu ? (
             <Menu
               handleDisableMenu={this.handleDisableMenu}
-              onSubmit={this.handleSubmit}
-              onChange={this.handleChange}
-              formValues={form}
+              onSubmit={onSubmit}
+              onChange={handleChange}
+              formValues={formValues}
+              closeMenu
             />
           ) : (
             <WeatherInfo
               handleActiveMenu={this.handleActiveMenu}
+              nameCity={dataCityName}
+              weatherStateName={dataWeatherToday.weather_state_name}
+              theTemp={dataWeatherToday.the_temp}
+              weatherStateAbbr={dataWeatherToday.weather_state_abbr}
+              created={dataWeatherToday.created}
             />
           )
         }
