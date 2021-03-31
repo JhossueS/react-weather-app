@@ -1,4 +1,5 @@
 import React from 'react';
+import Proptypes from 'prop-types';
 import WeatherInfo from './WeatherInfo';
 import Menu from './Menu';
 
@@ -63,5 +64,13 @@ class Sidebar extends React.Component {
     );
   }
 }
+
+Sidebar.propTypes = {
+  onSubmit: Proptypes.func.isRequired,
+  handleChange: Proptypes.func.isRequired,
+  formValues: Proptypes.object.isRequired,
+  dataCityName: Proptypes.string.isRequired,
+  dataWeatherToday: Proptypes.object.isRequired,
+};
 
 export default Sidebar;

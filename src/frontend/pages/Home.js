@@ -1,11 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Title from '../components/Title';
 import Highlights from '../components/Highlights';
 import ChangeGrades from '../components/ChangeGrades';
 import AboutProject from '../components/AboutProject';
 import Sidebar from '../components/Sidebar';
 
-const home = (props) => {
+const Home = (props) => {
   const {
     handleSumbit,
     formValues,
@@ -55,4 +56,11 @@ const home = (props) => {
 
 };
 
-export default home;
+Home.propTpyes = {
+  handleSumbit: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  formValues: PropTypes.object.isRequired,
+  dataWeather: PropTypes.object.isRequired,
+};
+
+export default Home;

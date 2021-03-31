@@ -4,7 +4,14 @@ import PropTypes from 'prop-types';
 import '../assets/styles/components/BurgerMenu.scss';
 
 const Menu = (props) => {
-  const { handleDisableMenu, onSubmit, onChange, formValues, className, closeMenu } = props;
+  const {
+    handleDisableMenu,
+    onSubmit,
+    onChange,
+    formValues,
+    className,
+    closeMenu,
+  } = props;
 
   return (
     <div className={className || 'burgerMenu__container'}>
@@ -51,7 +58,12 @@ const Menu = (props) => {
 };
 
 Menu.propTypes = {
-  handleDisableMenu: PropTypes.func.isRequired,
+  handleDisableMenu: PropTypes.func,
+  onSubmit: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  formValues: PropTypes.object.isRequired,
+  className: PropTypes.string,
+  closeMenu: PropTypes.bool,
 };
 
 export default Menu;

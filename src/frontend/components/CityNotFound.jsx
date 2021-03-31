@@ -1,28 +1,26 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Menu from './Menu';
 
-class CityNotFound extends React.Component {
+const CityNotFound = (props) => {
+  const { handleSumbit, handleChange, formValues } = props;
+  return (
+    <div className='city-notFound-container h1'>
+      <h1>City Not Found</h1>
+      <Menu
+        className='none'
+        formValues={formValues}
+        onSubmit={handleSumbit}
+        onChange={handleChange}
+      />
+    </div>
+  );
+};
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      form: {
-        cityName: '',
-      },
-    };
-  }
-
-  render() {
-
-    const { form } = this.state;
-    return (
-      <div className='city-notFound-container h1'>
-        <h1>City Not Found</h1>
-        <Menu className formValues={form} />
-      </div>
-    );
-  }
-}
+CityNotFound.propTypes = {
+  handleSumbit: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  formValues: PropTypes.object.isRequired,
+};
 
 export default CityNotFound;

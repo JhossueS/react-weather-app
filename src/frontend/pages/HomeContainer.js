@@ -21,21 +21,26 @@ class HomeContainer extends React.Component {
     };
   }
 
-  //handle menu
+  //handle formMenu
   handleSumbit(e) {
     const { form } = this.state;
     e.preventDefault();
+    // if the form has something written on it to be able to do the search action
+    if (form.cityName.length === 0) {
+      return false;
+    }
+
     this.setState({
       loading: true,
     });
-    console.log(e);
-    fetchDataWeather(form.cityName)
+    return fetchDataWeather(form.cityName)
       .then((dataWeather) => {
-        console.log(dataWeather);
+
         this.setState({
           data: dataWeather,
           loading: false,
         });
+
       });
   }
 
@@ -47,22 +52,24 @@ class HomeContainer extends React.Component {
     });
   }
 
+  // firts search city
   componentDidMount() {
     this.fetchData('london');
   }
 
+  // fetching data
   fetchData(cityName) {
     fetchDataWeather(cityName)
       .then((dataWeather) => {
         console.log(dataWeather);
-
+        // if dataWeather full data
         if (dataWeather) {
           return this.setState({
             data: dataWeather,
             loading: false,
           });
         }
-
+        // dataWeahter empty
         return this.setState({
           data: false,
           loading: false,
@@ -78,7 +85,13 @@ class HomeContainer extends React.Component {
     }
 
     if (!data) {
-      return <CityNotFound />;
+      return (
+        <CityNotFound
+          handleSumbit={this.handleSumbit}
+          handleChange={this.handleChange}
+          formValues={form}
+        />
+      );
     }
 
     return (
