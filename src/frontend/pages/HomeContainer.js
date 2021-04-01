@@ -11,6 +11,8 @@ class HomeContainer extends React.Component {
 
     this.handleSumbit = this.handleSumbit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.onCentigrates = this.onCentigrates.bind(this);
+    this.onFahrenheit = this.onFahrenheit.bind(this);
 
     this.state = {
       loading: true,
@@ -77,6 +79,30 @@ class HomeContainer extends React.Component {
       });
   }
 
+  // handle change Grades
+
+  onFahrenheit() {
+    const grade = this.celsiusToFahrenheit(15);
+    const { data } = this.state;
+    this.setState({
+      ...data,
+
+      the_temp: 'xxx',
+
+    });
+    console.log(grade);
+    console.log('fahrenheit');
+  }
+
+  onCentigrates() {
+    console.log('centigrates');
+  }
+
+  celsiusToFahrenheit(e) {
+    this.fahenheit = (e * 9 / 5) + 32;
+    return this.fahenheit;
+  }
+
   render() {
     const { form, loading, data } = this.state;
 
@@ -101,6 +127,8 @@ class HomeContainer extends React.Component {
           handleChange={this.handleChange}
           dataWeather={data}
           formValues={form}
+          onFahrenheit={this.onFahrenheit}
+          onCentigrates={this.onCentigrates}
         />
       </>
     );

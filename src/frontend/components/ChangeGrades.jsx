@@ -1,20 +1,22 @@
+/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Button from './Button';
 
 import '../assets/styles/components/ChangeGrades.scss';
 
-class Buttons extends Component {
+class ChangeGrades extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      isActiveGrades: true,
-    };
-    this.buttonActive = this.buttonActive.bind(this);
-    this.butttonDisable = this.butttonDisable.bind(this);
     this.handleActiveCentigrades = this.handleActiveCentigrades.bind(this);
     this.handleActiveFahrenheit = this.handleActiveFahrenheit.bind(this);
+
+    // state of menu on or off
+    this.state = {
+      isButtonActive: false,
+    };
   };
 
   //classname to change active button Degrees Centigrade
@@ -32,37 +34,39 @@ class Buttons extends Component {
     return this.classDisable;
   }
 
-  //handle stateButton
+  //handle Defrees centigrade or Fahrenheit
 
   handleActiveCentigrades() {
     this.props.onCentigrates();
     this.setState({
-      isActiveGrades: true,
+      isButtonActive: true,
     });
   };
 
   handleActiveFahrenheit() {
     this.props.onFahrenheit();
     this.setState({
-      isActiveGrades: false,
+      isButtonActive: false,
     });
   };
 
   render() {
 
-    const { isActiveGrades } = this.state;
+    const { isButtonActive } = this.state;
 
     return (
       <div className='buttons__container'>
         <Button
-          classNamesButton={isActiveGrades ? this.buttonActive() : this.butttonDisable()}
-          onclick={isActiveGrades ? null : this.handleActiveCentigrades}
+          classNamesButton={isButtonActive ? this.buttonActive() : this.butttonDisable()}
+          type='button'
+          onclick={isButtonActive ? null : this.handleActiveCentigrades}
         >
           °C
         </Button>
         <Button
-          classNamesButton={isActiveGrades ? this.butttonDisable() : this.buttonActive()}
-          onclick={isActiveGrades ? this.handleActiveFahrenheit : null}
+          classNamesButton={isButtonActive ? this.butttonDisable() : this.buttonActive()}
+          type='button'
+          onclick={isButtonActive ? this.handleActiveFahrenheit : null}
         >
           °F
         </Button>
@@ -71,4 +75,9 @@ class Buttons extends Component {
   }
 };
 
-export default Buttons;
+ChangeGrades.propTypes = {
+  onFahrenheit: PropTypes.func.isRequired,
+  onCentigrates: PropTypes.func.isRequired,
+};
+
+export default ChangeGrades;

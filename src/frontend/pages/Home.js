@@ -12,6 +12,8 @@ const Home = (props) => {
     formValues,
     handleChange,
     dataWeather,
+    onFahrenheit,
+    onCentigrates,
   } = props;
 
   return (
@@ -24,8 +26,8 @@ const Home = (props) => {
         dataCityName={dataWeather.nameCity}
       />
       <div className='App__container'>
-        <ChangeGrades />
-        {/*  <Title className='App_title__container'>
+        <ChangeGrades onFahrenheit={onFahrenheit} onCentigrates={onCentigrates} />
+        {/*<Title className='App_title__container'>
           <h2>Today&apos;s Highlights</h2>
         </Title>
         <div className='App_today_highlights'>
