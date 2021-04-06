@@ -5,6 +5,8 @@ import Highlights from '../components/Highlights';
 import ChangeGrades from '../components/ChangeGrades';
 import AboutProject from '../components/AboutProject';
 import Sidebar from '../components/Sidebar';
+import AnotherDay from '../components/AnotherDay';
+import AnotherDayContainer from '../components/AnotherDayContainer';
 
 const Home = (props) => {
   const {
@@ -14,7 +16,10 @@ const Home = (props) => {
     dataWeather,
     onFahrenheit,
     onCentigrates,
+    isFahrenit,
   } = props;
+
+  const { dataWeekDays } = dataWeather;
 
   return (
     <div className='App'>
@@ -24,13 +29,22 @@ const Home = (props) => {
         handleChange={handleChange}
         dataWeatherToday={dataWeather.dataToday}
         dataCityName={dataWeather.nameCity}
+        isFahrenit={isFahrenit}
       />
       <div className='App__container'>
         <ChangeGrades onFahrenheit={onFahrenheit} onCentigrates={onCentigrates} />
-        {/*<Title className='App_title__container'>
+        <AnotherDayContainer>
+          {
+            dataWeekDays.length > 0 &&
+            dataWeekDays.map((item) => (
+              <AnotherDay key={item.id} {...item} isFahrenit={isFahrenit} />
+            ))
+          }
+        </AnotherDayContainer>
+        <Title className='App_title__container'>
           <h2>Today&apos;s Highlights</h2>
         </Title>
-        <div className='App_today_highlights'>
+        {/*<div className='App_today_highlights'>
           <Highlights
             additionalItem
             title='Wind Status'

@@ -15,7 +15,7 @@ class ChangeGrades extends Component {
 
     // state of menu on or off
     this.state = {
-      isButtonActive: false,
+      isButtonActive: true,
     };
   };
 

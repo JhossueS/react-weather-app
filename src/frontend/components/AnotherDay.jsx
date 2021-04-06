@@ -8,6 +8,7 @@ const AnotherDay = (props) => {
     weather_state_abbr,
     max_temp,
     min_temp,
+    isFahrenit,
     applicable_date,
   } = props;
   return (
@@ -19,11 +20,11 @@ const AnotherDay = (props) => {
       <div className='anotherDay__container-temperature'>
         <span>
           {(Math.floor(max_temp)).toFixed(1)}
-          °C
+          {isFahrenit ? '°F' : '°C'}
         </span>
         <span>
           {(Math.floor(min_temp)).toFixed(1)}
-          °C
+          {isFahrenit ? '°F' : '°C'}
         </span>
       </div>
     </div>

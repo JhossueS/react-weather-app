@@ -1,12 +1,11 @@
 @import '../Master';
 
 .anotherDay__container {
-  width: 12rem;
+  width: 100%;
   background-color: $backgroundPrincipal;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem;
 
   &-titleDay {
     font-size: $fontSizeTitle;

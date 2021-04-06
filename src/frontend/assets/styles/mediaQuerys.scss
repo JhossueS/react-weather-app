@@ -2,20 +2,20 @@
 @media only screen and (min-width: 992px) {
   .App {
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 45rem 2fr;
   }
 
   .App__container {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 6rem 20rem 10rem 40rem;
-    margin: 0 auto;
   }
 
   .App_nextDay__container{
-    grid-template-columns: repeat(5, 1fr);
-    gap: 1rem;
+    grid-template-columns: repeat(5, 17.5rem);
+    gap: 2rem;
     padding: 0;
+    justify-content: center;
   }
 
   .App_today_highlights{
@@ -24,7 +24,7 @@
   }
 
   .App_title__container {
-    margin: 0;
+    margin: 0 0 0 12rem;
     display: flex;
     align-items: center;
   }

@@ -16,6 +16,10 @@
     font-size: $fontSizeNormal;
   }
 
+  &-grades:focus {
+    outline: none;
+  }
+
   &-grades.isDisable {
     cursor: pointer;
     background-color: #585676;

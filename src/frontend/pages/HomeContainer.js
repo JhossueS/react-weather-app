@@ -1,6 +1,7 @@
 import React from 'react';
-import Home from './Home';
 import { fetchDataWeather } from '../services/fetchDataWeather';
+import updateGrades from '../utils/updateGrades';
+import Home from './Home';
 import Loading from '../components/Loading';
 import CityNotFound from '../components/CityNotFound';
 
@@ -11,15 +12,15 @@ class HomeContainer extends React.Component {
 
     this.handleSumbit = this.handleSumbit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.onCentigrates = this.onCentigrates.bind(this);
-    this.onFahrenheit = this.onFahrenheit.bind(this);
+    this.toggleGradesUse = this.toggleGradesUse.bind(this);
 
     this.state = {
       loading: true,
-      data: [],
+      data: {},
       form: {
         cityName: '',
       },
+      isFahrenit: false,
     };
   }
 
@@ -79,32 +80,24 @@ class HomeContainer extends React.Component {
       });
   }
 
-  // handle change Grades
+  // toggle Grades
 
-  onFahrenheit() {
-    const grade = this.celsiusToFahrenheit(15);
-    const { data } = this.state;
+  toggleGradesUse() {
+    const { data, isFahrenit } = this.state;
+    const update = updateGrades(data, isFahrenit);
     this.setState({
-      ...data,
+      isFahrenit: !isFahrenit,
+      data: {
+        ...data,
+        dataToday: update.updateGradeToday,
+        dataWeekDays: update.updateGradesWeek,
 
-      the_temp: 'xxx',
-
+      },
     });
-    console.log(grade);
-    console.log('fahrenheit');
-  }
-
-  onCentigrates() {
-    console.log('centigrates');
-  }
-
-  celsiusToFahrenheit(e) {
-    this.fahenheit = (e * 9 / 5) + 32;
-    return this.fahenheit;
   }
 
   render() {
-    const { form, loading, data } = this.state;
+    const { form, loading, data, isFahrenit } = this.state;
 
     if (loading) {
       return <Loading />;
@@ -127,8 +120,9 @@ class HomeContainer extends React.Component {
           handleChange={this.handleChange}
           dataWeather={data}
           formValues={form}
-          onFahrenheit={this.onFahrenheit}
-          onCentigrates={this.onCentigrates}
+          onFahrenheit={this.toggleGradesUse}
+          onCentigrates={this.toggleGradesUse}
+          isFahrenit={isFahrenit}
         />
       </>
     );

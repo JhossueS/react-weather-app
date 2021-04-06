@@ -11,6 +11,7 @@ const InfoWeather = (props) => {
     weatherStateName,
     weatherStateAbbr,
     created,
+    isFahrenit,
   } = props;
 
   const date = new Date(created);
@@ -61,7 +62,7 @@ const InfoWeather = (props) => {
 
         <div className='infoWeather__container-weather-details'>
           <span className='infoWeather__container-weather-details-number'>{Math.floor(theTemp)}</span>
-          <span className='infoWeather__container-weather-details-grade'>°C</span>
+          <span className='infoWeather__container-weather-details-grade'>{isFahrenit ? '°F' : '°C'}</span>
         </div>
         <div className='infoWeather__container-weather-details-content'>
           <p>{weatherStateName}</p>

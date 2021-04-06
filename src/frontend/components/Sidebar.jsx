@@ -36,6 +36,7 @@ class Sidebar extends React.Component {
       formValues,
       dataWeatherToday,
       dataCityName,
+      isFahrenit,
     } = this.props;
 
     return (
@@ -57,6 +58,7 @@ class Sidebar extends React.Component {
               theTemp={dataWeatherToday.the_temp}
               weatherStateAbbr={dataWeatherToday.weather_state_abbr}
               created={dataWeatherToday.created}
+              isFahrenit={isFahrenit}
             />
           )
         }
