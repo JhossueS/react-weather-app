@@ -10,12 +10,17 @@ const InfoWeather = (props) => {
     theTemp,
     weatherStateName,
     weatherStateAbbr,
-    created,
+    applicableDate,
     isFahrenit,
   } = props;
+  //transfor string and date
+  const tramsfornString = applicableDate.replace('-', ',').replace('-', ',');
 
-  const date = new Date(created);
+  const date = new Date(tramsfornString);
 
+  console.log(date);
+
+  //options format date
   const dateMonthFormat = new Intl.DateTimeFormat('en', {
     month: 'short',
   });

@@ -37,7 +37,15 @@ const Home = (props) => {
           {
             dataWeekDays.length > 0 &&
             dataWeekDays.map((item) => (
-              <AnotherDay key={item.id} {...item} isFahrenit={isFahrenit} />
+              <AnotherDay
+                key={item.id}
+                weatherStateAbbr={item.weather_state_abbr}
+                maxTemp={item.max_temp}
+                minTemp={item.min_temp}
+                created={item.created}
+                applicableDate={item.applicable_date}
+                isFahrenit={isFahrenit}
+              />
             ))
           }
         </AnotherDayContainer>

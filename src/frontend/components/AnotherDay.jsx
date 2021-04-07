@@ -1,29 +1,36 @@
-/* eslint-disable camelcase */
 import React from 'react';
 import PropTypes from 'prop-types';
 import '../assets/styles/components/AnotherDay.scss';
 
 const AnotherDay = (props) => {
   const {
-    weather_state_abbr,
-    max_temp,
-    min_temp,
+    weatherStateAbbr,
+    maxTemp,
+    minTemp,
     isFahrenit,
-    applicable_date,
+    //created,
+    applicableDate,
   } = props;
+
+  const tramsfornString = applicableDate.replace('-', ',').replace('-', ',');
+  const date = new Date(tramsfornString);
+  const seconds = new Intl.DateTimeFormat('en', {
+    second: 'numeric',
+  });
+  console.log(seconds.format(date));
   return (
     <div className='anotherDay__container'>
       <p className='anotherDay__container-titleDay' />
       <figure className='anotherDay__container-img'>
-        <img src={`https://www.metaweather.com/static/img/weather/${weather_state_abbr}.svg`} alt='' />
+        <img src={`https://www.metaweather.com/static/img/weather/${weatherStateAbbr}.svg`} alt='' />
       </figure>
       <div className='anotherDay__container-temperature'>
         <span>
-          {(Math.floor(max_temp)).toFixed(1)}
+          {(Math.floor(maxTemp)).toFixed(1)}
           {isFahrenit ? '°F' : '°C'}
         </span>
         <span>
-          {(Math.floor(min_temp)).toFixed(1)}
+          {(Math.floor(minTemp)).toFixed(1)}
           {isFahrenit ? '°F' : '°C'}
         </span>
       </div>
@@ -32,10 +39,10 @@ const AnotherDay = (props) => {
 };
 
 AnotherDay.propTypes = {
-  max_temp: PropTypes.number.isRequired,
-  min_temp: PropTypes.number.isRequired,
-  weather_state_abbr: PropTypes.string.isRequired,
-  applicable_date: PropTypes.string.isRequired,
+  maxTemp: PropTypes.number.isRequired,
+  minTemp: PropTypes.number.isRequired,
+  weatherStateAbbr: PropTypes.string.isRequired,
+  //applicable_date: PropTypes.string.isRequired,
 };
 
 export default AnotherDay;

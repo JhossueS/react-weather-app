@@ -57,7 +57,7 @@ class Sidebar extends React.Component {
               weatherStateName={dataWeatherToday.weather_state_name}
               theTemp={dataWeatherToday.the_temp}
               weatherStateAbbr={dataWeatherToday.weather_state_abbr}
-              created={dataWeatherToday.created}
+              applicableDate={dataWeatherToday.applicable_date}
               isFahrenit={isFahrenit}
             />
           )
