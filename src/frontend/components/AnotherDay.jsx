@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import dateFormat from '../utils/dateFormat';
 import '../assets/styles/components/AnotherDay.scss';
 
 const AnotherDay = (props) => {
@@ -8,19 +9,14 @@ const AnotherDay = (props) => {
     maxTemp,
     minTemp,
     isFahrenit,
-    //created,
     applicableDate,
   } = props;
 
-  const tramsfornString = applicableDate.replace('-', ',').replace('-', ',');
-  const date = new Date(tramsfornString);
-  const seconds = new Intl.DateTimeFormat('en', {
-    second: 'numeric',
-  });
-  console.log(seconds.format(date));
   return (
     <div className='anotherDay__container'>
-      <p className='anotherDay__container-titleDay' />
+      <p className='anotherDay__container-titleDay'>
+        {dateFormat(applicableDate)}
+      </p>
       <figure className='anotherDay__container-img'>
         <img src={`https://www.metaweather.com/static/img/weather/${weatherStateAbbr}.svg`} alt='' />
       </figure>

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import dateFormat from '../utils/dateFormat';
 import '../assets/styles/components/WeatherInfo.scss';
 
 const InfoWeather = (props) => {
@@ -13,25 +14,6 @@ const InfoWeather = (props) => {
     applicableDate,
     isFahrenit,
   } = props;
-  //transfor string and date
-  const tramsfornString = applicableDate.replace('-', ',').replace('-', ',');
-
-  const date = new Date(tramsfornString);
-
-  console.log(date);
-
-  //options format date
-  const dateMonthFormat = new Intl.DateTimeFormat('en', {
-    month: 'short',
-  });
-
-  const dateDayFormat = new Intl.DateTimeFormat('en', {
-    day: '2-digit',
-  });
-
-  const dateWeekdayFormat = new Intl.DateTimeFormat('en', {
-    weekday: 'short',
-  });
 
   return (
     <div className='infoWeather__container'>
@@ -74,7 +56,7 @@ const InfoWeather = (props) => {
           <div className='infoWeather__container-weather-details-content-day'>
             <span>Today</span>
             <span>•</span>
-            <span>{`${dateWeekdayFormat.format(date)}, ${dateDayFormat.format(date)} ${dateMonthFormat.format(date)}`}</span>
+            <span>{dateFormat(applicableDate)}</span>
           </div>
           <div className='infoWeather__container-weather-details-content-location'>
             <span className='infoWeather__container-weather-details-content-location-point'>

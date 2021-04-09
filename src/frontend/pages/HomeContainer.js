@@ -40,6 +40,7 @@ class HomeContainer extends React.Component {
       .then((dataWeather) => {
 
         this.setState({
+          isFahrenit: false,
           data: dataWeather,
           loading: false,
         });
