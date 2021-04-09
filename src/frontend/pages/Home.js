@@ -7,6 +7,7 @@ import AboutProject from '../components/AboutProject';
 import Sidebar from '../components/Sidebar';
 import AnotherDay from '../components/AnotherDay';
 import AnotherDayContainer from '../components/AnotherDayContainer';
+import HighlightsContainer from '../components/HighlightsContainer';
 
 const Home = (props) => {
   const {
@@ -19,7 +20,7 @@ const Home = (props) => {
     isFahrenit,
   } = props;
 
-  const { dataWeekDays } = dataWeather;
+  const { dataWeekDays, dataToday } = dataWeather;
 
   return (
     <div className='App'>
@@ -52,28 +53,32 @@ const Home = (props) => {
         <Title className='App_title__container'>
           <h2>Today&apos;s Highlights</h2>
         </Title>
-        {/*<div className='App_today_highlights'>
+        <HighlightsContainer>
           <Highlights
             additionalItem
             title='Wind Status'
+            data={dataToday.wind_direction}
             description='mph'
           />
           <Highlights
             additionalItem
             progressBar
             title='Humidity'
+            data={dataToday.humidity}
             description='%'
           />
           <Highlights
             title='Visibility'
             description='miles'
+            data={dataToday.visibility}
           />
           <Highlights
             title='Air Pressure'
             description='mb'
+            data={dataToday.predictability}
           />
-        </div>
-        <AboutProject /> */}
+        </HighlightsContainer>
+        <AboutProject />
       </div>
     </div>
   );

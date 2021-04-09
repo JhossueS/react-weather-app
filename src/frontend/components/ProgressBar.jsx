@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const ProgressBar = (props) => {
   const { humedity } = props;
@@ -23,10 +22,6 @@ const ProgressBar = (props) => {
       </div>
     </div>
   );
-};
-
-ProgressBar.propTypes = {
-  humedity: PropTypes.number.isRequired,
 };
 
 export default ProgressBar;

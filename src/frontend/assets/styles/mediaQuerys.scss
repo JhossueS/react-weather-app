@@ -19,8 +19,9 @@
   }
 
   .App_today_highlights{
-    grid-template-columns: 32rem 32rem;
+    grid-template-columns: 50rem 50rem;
     align-self: center;
+    justify-items: center;
   }
 
   .App_title__container {
