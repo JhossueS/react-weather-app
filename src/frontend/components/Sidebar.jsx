@@ -10,7 +10,7 @@ class Sidebar extends React.Component {
     this.handleActiveMenu = this.handleActiveMenu.bind(this);
     this.handleDisableMenu = this.handleDisableMenu.bind(this);
     this.state = {
-      menu: false,
+      menu: true,
     };
   }
 

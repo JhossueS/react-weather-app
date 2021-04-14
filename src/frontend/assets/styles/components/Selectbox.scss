@@ -1,0 +1,62 @@
+@import '../Master';
+
+.select-box-container {
+  cursor: pointer;
+  display: flex;
+  font-size: $fontSizeNormal;
+  justify-content: center;
+  margin: $marginOurPaddingNormal + 2 auto 0 auto;
+  width: 90%;
+
+  & form {
+    max-width: 34rem;
+    text-align: center;
+    width: 100%;
+  }
+
+}
+
+.select-box {
+  position: relative;
+  width: 100%;
+
+  &-selects {
+    align-items: center;
+    border: 0.2rem solid $colorfontText;
+    display: flex;
+    justify-content: space-between;
+    padding: $marginOurPaddingNormal - 1;
+    transition: 500ms ease all;
+
+    &:hover {
+      background-color: $backgroundSecundary;
+      & i {
+        transform: rotate(90deg);
+      }
+    }
+
+  }
+
+  &-options {
+    margin: $marginOurPaddingNormal 0 0 0;
+    max-height: 25rem;
+    overflow: auto;
+
+
+    &-option {
+      border: 0.2rem solid transparent;
+      cursor: pointer;
+      display: flex;
+      justify-content: flex-start;
+      width: 100%;
+      padding: $marginOurPaddingNormal - 1;
+      margin: $marginOurPaddingNormal 0 0 0;
+      transition: 500ms ease all;
+
+      &:hover {
+        background-color: $backgroundSecundary;
+        border: 0.2rem solid $colorfontText;
+      }
+    }
+  }
+}

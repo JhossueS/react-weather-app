@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Selectbox from './Selectbox';
 
 import '../assets/styles/components/BurgerMenu.scss';
 
@@ -48,10 +49,7 @@ const Menu = (props) => {
           />
         </form>
       </div>
-      <div className='burgerMenu__container-menu-location'>
-        <p>london</p>
-        <i className='material-icons'>keyboard_arrow_down</i>
-      </div>
+      <Selectbox />
     </div>
   );
 
