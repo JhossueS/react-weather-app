@@ -48,6 +48,7 @@ class Sidebar extends React.Component {
               onSubmit={onSubmit}
               onChange={handleChange}
               formValues={formValues}
+              cityName={dataCityName}
               closeMenu
             />
           ) : (

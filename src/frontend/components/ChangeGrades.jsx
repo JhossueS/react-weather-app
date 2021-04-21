@@ -17,7 +17,7 @@ class ChangeGrades extends Component {
     this.state = {
       isButtonActive: true,
     };
-  };
+  }
 
   //classname to change active button Degrees Centigrade
   buttonActive() {
@@ -41,14 +41,14 @@ class ChangeGrades extends Component {
     this.setState({
       isButtonActive: true,
     });
-  };
+  }
 
   handleActiveFahrenheit() {
     this.props.onFahrenheit();
     this.setState({
       isButtonActive: false,
     });
-  };
+  }
 
   render() {
 
@@ -73,7 +73,7 @@ class ChangeGrades extends Component {
       </div>
     );
   }
-};
+}
 
 ChangeGrades.propTypes = {
   onFahrenheit: PropTypes.func.isRequired,

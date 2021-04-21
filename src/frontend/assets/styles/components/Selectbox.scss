@@ -1,7 +1,6 @@
 @import '../Master';
 
-.select-box-container {
-  cursor: pointer;
+.select {
   display: flex;
   font-size: $fontSizeNormal;
   justify-content: center;
@@ -14,49 +13,60 @@
     width: 100%;
   }
 
-}
-
-.select-box {
-  position: relative;
-  width: 100%;
-
-  &-selects {
-    align-items: center;
-    border: 0.2rem solid $colorfontText;
-    display: flex;
-    justify-content: space-between;
-    padding: $marginOurPaddingNormal - 1;
-    transition: 500ms ease all;
-
-    &:hover {
-      background-color: $backgroundSecundary;
-      & i {
-        transform: rotate(90deg);
-      }
+  &-box {
+    cursor: pointer;
+    position: relative;
+    width: 100%;
+    
+    &:focus {
+      outline: none;
     }
 
-  }
-
-  &-options {
-    margin: $marginOurPaddingNormal 0 0 0;
-    max-height: 25rem;
-    overflow: auto;
-
-
-    &-option {
-      border: 0.2rem solid transparent;
-      cursor: pointer;
-      display: flex;
-      justify-content: flex-start;
-      width: 100%;
-      padding: $marginOurPaddingNormal - 1;
-      margin: $marginOurPaddingNormal 0 0 0;
-      transition: 500ms ease all;
-
-      &:hover {
-        background-color: $backgroundSecundary;
+    &-selects {
+        align-items: center;
         border: 0.2rem solid $colorfontText;
+        display: flex;
+        justify-content: space-between;
+        padding: $marginOurPaddingNormal - 1;
+        transition: 500ms ease all;
+
+        &:hover, &.active {
+          background-color: $backgroundSecundary;
+          & i {
+            transform: rotate(90deg);
+          }
+        }
+
       }
-    }
+
+      &-options {
+        border: 2px solid $colorfontText;
+        margin: $marginOurPaddingNormal 0 0 0;
+        background-color: $backgroundSecundary;
+        max-height: 25rem;
+        overflow: auto;
+        display: none;
+
+        &__item {
+          border: 0.2rem solid transparent;
+          cursor: pointer;
+          display: flex;
+          justify-content: flex-start;
+          width: 100%;
+          padding: $marginOurPaddingNormal - 1;
+          margin: $marginOurPaddingNormal 0;
+          transition: 500ms ease all;
+
+          &:hover {
+            background-color: $backgroundPrincipal;
+            border: 0.2rem solid $colorfontText;
+          }
+        }
+
+        &.active {
+          display: block;
+        }
+      }
   }
+
 }
