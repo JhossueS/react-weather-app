@@ -39,14 +39,13 @@ class HomeContainer extends React.Component {
     });
     fetchDataWeather(form.cityName)
       .then((dataWeather) => {
-
         this.setState({
           isFahrenit: false,
           data: dataWeather,
           loading: false,
         });
       })
-      .catch((e) => console.log(e));
+      .catch((e) => console.error(e));
   }
 
   handleChange(e) {
@@ -66,7 +65,7 @@ class HomeContainer extends React.Component {
   fetchData(cityName) {
     this.setState({
       loading: true,
-    })
+    });
     fetchDataWeather(cityName)
       .then((dataWeather) => {
         // if dataWeather full data
@@ -101,6 +100,35 @@ class HomeContainer extends React.Component {
     });
   }
 
+  // save list localstorage
+  saveCitiesList () {
+    const storage = window.localStorage;
+    const { data } = this.state;
+
+    let citiesList = []
+
+    if (storage.length) {
+      citiesList = JSON.parse(storage.getItem('citiesList'));
+      // clone state and add new name city
+      const  saveCities = [...citiesList, data.nameCity];
+      // clear duplicates names city
+      const clearDuplicatesCities = this.removeDuplicates(saveCities);
+
+      return storage.setItem('citiesList', JSON.stringify(clearDuplicatesCities));
+    }
+    citiesList = [data.nameCity]
+    storage.setItem('citiesList', JSON.stringify(citiesList));
+  }
+
+  removeDuplicates(arr)  {
+    return arr.filter((value, key) => {
+      // if false no include to array the value
+      if(value) {
+        return arr.indexOf(value) === key;
+      }
+    })
+  }
+
   // updated state of form values of select box name city
   selectBoxItem(idnameCity) {
     return this.fetchData(idnameCity)
@@ -108,7 +136,7 @@ class HomeContainer extends React.Component {
 
   render() {
     const { form, loading, data, isFahrenit } = this.state;
-
+    this.saveCitiesList();
     if (loading) {
       return <Loading />;
     }
@@ -119,6 +147,7 @@ class HomeContainer extends React.Component {
           handleSumbit={this.handleSumbit}
           handleChange={this.handleChange}
           formValues={form}
+          selectBoxItem={this.selectBoxItem}
         />
       );
     }
