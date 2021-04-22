@@ -69,7 +69,6 @@ class HomeContainer extends React.Component {
     })
     fetchDataWeather(cityName)
       .then((dataWeather) => {
-        console.log(dataWeather);
         // if dataWeather full data
         if (dataWeather) {
           return this.setState({
@@ -83,7 +82,7 @@ class HomeContainer extends React.Component {
           loading: false,
         });
       })
-      .catch((e) => console.log(e));
+      .catch((e) => console.error(e));
   }
 
   // toggle Grades
@@ -104,7 +103,6 @@ class HomeContainer extends React.Component {
 
   // updated state of form values of select box name city
   selectBoxItem(idnameCity) {
-    console.log(idnameCity);
     return this.fetchData(idnameCity)
   }
 
