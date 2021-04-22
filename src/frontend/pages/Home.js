@@ -18,6 +18,7 @@ const Home = (props) => {
     onFahrenheit,
     onCentigrates,
     isFahrenit,
+    selectBoxItem,
   } = props;
 
   const { dataWeekDays, dataToday } = dataWeather;
@@ -31,6 +32,7 @@ const Home = (props) => {
         dataWeatherToday={dataWeather.dataToday}
         dataCityName={dataWeather.nameCity}
         isFahrenit={isFahrenit}
+        selectBoxItem={selectBoxItem}
       />
       <div className='App__container'>
         <ChangeGrades onFahrenheit={onFahrenheit} onCentigrates={onCentigrates} />

@@ -10,7 +10,7 @@ class Sidebar extends React.Component {
     this.handleActiveMenu = this.handleActiveMenu.bind(this);
     this.handleDisableMenu = this.handleDisableMenu.bind(this);
     this.state = {
-      menu: false,
+      menu: true,
     };
   }
 
@@ -37,6 +37,7 @@ class Sidebar extends React.Component {
       dataWeatherToday,
       dataCityName,
       isFahrenit,
+      selectBoxItem,
     } = this.props;
 
     return (
@@ -48,7 +49,9 @@ class Sidebar extends React.Component {
               onSubmit={onSubmit}
               onChange={handleChange}
               formValues={formValues}
+              cityName={dataCityName}
               closeMenu
+              selectBoxItem={selectBoxItem}
             />
           ) : (
             <WeatherInfo
