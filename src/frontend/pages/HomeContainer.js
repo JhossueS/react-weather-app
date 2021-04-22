@@ -13,6 +13,7 @@ class HomeContainer extends React.Component {
     this.handleSumbit = this.handleSumbit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.toggleGradesUse = this.toggleGradesUse.bind(this);
+    this.selectBoxItem = this.selectBoxItem.bind(this);
 
     this.state = {
       loading: true,
@@ -36,7 +37,7 @@ class HomeContainer extends React.Component {
     this.setState({
       loading: true,
     });
-    return fetchDataWeather(form.cityName)
+    fetchDataWeather(form.cityName)
       .then((dataWeather) => {
 
         this.setState({
@@ -44,8 +45,8 @@ class HomeContainer extends React.Component {
           data: dataWeather,
           loading: false,
         });
-
-      });
+      })
+      .catch((e) => console.log(e));
   }
 
   handleChange(e) {
@@ -63,6 +64,9 @@ class HomeContainer extends React.Component {
 
   // fetching data
   fetchData(cityName) {
+    this.setState({
+      loading: true,
+    })
     fetchDataWeather(cityName)
       .then((dataWeather) => {
         console.log(dataWeather);
@@ -78,7 +82,8 @@ class HomeContainer extends React.Component {
           data: false,
           loading: false,
         });
-      });
+      })
+      .catch((e) => console.log(e));
   }
 
   // toggle Grades
@@ -95,6 +100,12 @@ class HomeContainer extends React.Component {
 
       },
     });
+  }
+
+  // updated state of form values of select box name city
+  selectBoxItem(idnameCity) {
+    console.log(idnameCity);
+    return this.fetchData(idnameCity)
   }
 
   render() {
@@ -124,6 +135,7 @@ class HomeContainer extends React.Component {
           onFahrenheit={this.toggleGradesUse}
           onCentigrates={this.toggleGradesUse}
           isFahrenit={isFahrenit}
+          selectBoxItem={this.selectBoxItem}
         />
       </>
     );

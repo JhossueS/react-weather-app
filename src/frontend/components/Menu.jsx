@@ -15,7 +15,6 @@ class Menu extends React.Component {
 
   getListOfLocalStorage() {
     if (this.storage.length) {
-      console.log('lleno')
       return this.setState({
         citiesList: JSON.parse(this.storage.getItem('citiesList'))
       })
@@ -26,12 +25,15 @@ class Menu extends React.Component {
     })
   }
 
+  // save list localstorage
   saveCitiesList () {
     const { citiesList } = this.state;
 
+    // clone state and add new name city
     const  saveCities = [...citiesList, this.props.cityName]
+    // clear duplicates names city
     const clearDuplicatesCities = this.removeDuplicates(saveCities);
-    console.log(clearDuplicatesCities)
+
     this.storage.setItem('citiesList', JSON.stringify(clearDuplicatesCities));
   }
 
@@ -58,6 +60,7 @@ class Menu extends React.Component {
       formValues,
       className,
       closeMenu,
+      selectBoxItem,
     } = this.props;
 
     const { citiesList } = this.state
@@ -100,7 +103,7 @@ class Menu extends React.Component {
             />
           </form>
         </div>
-        <Selectbox citiesList={citiesList} />
+        <Selectbox citiesList={citiesList} selectBoxItem={selectBoxItem} />
       </div>
     );
   }

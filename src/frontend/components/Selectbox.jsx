@@ -24,7 +24,7 @@ class Selectbox extends React.Component {
   render() {
 
     const { isActive } = this.state;
-    const { citiesList } = this.props;
+    const { citiesList, selectBoxItem} = this.props;
 
     const toggleClassSelect = classNames('select-box-selects', {
       active: isActive,
@@ -56,7 +56,10 @@ class Selectbox extends React.Component {
             </div>
             <div className={toggleClassOptions}>
             {citiesList.map((e) => (
-              <div className="select-box-options__item" key={e}>
+              <div className="select-box-options__item"
+                key={e}
+                onClick={() => selectBoxItem(e)}
+              >
                 <span>{e}</span>
               </div>
               ))
