@@ -25,30 +25,8 @@ class Menu extends React.Component {
     })
   }
 
-  // save list localstorage
-  saveCitiesList () {
-    const { citiesList } = this.state;
-
-    // clone state and add new name city
-    const  saveCities = [...citiesList, this.props.cityName]
-    // clear duplicates names city
-    const clearDuplicatesCities = this.removeDuplicates(saveCities);
-
-    this.storage.setItem('citiesList', JSON.stringify(clearDuplicatesCities));
-  }
-
-  removeDuplicates(arr)  {
-    return arr.filter((value, key) => {
-      return arr.indexOf(value) === key;
-    })
-  }
-
   componentDidMount() {
     this.getListOfLocalStorage();
-  }
-
-  componentWillUnmount() {
-    this.saveCitiesList();
   }
 
   render() {
@@ -71,10 +49,7 @@ class Menu extends React.Component {
           <div className='burgerMenu__container-clear-icon'>
             <i
               className='material-icons'
-              onClick={() => {
-                handleDisableMenu();
-                this.saveCitiesList();
-              }}
+              onClick={handleDisableMenu}
               role='button'
               tabIndex='0'
             >

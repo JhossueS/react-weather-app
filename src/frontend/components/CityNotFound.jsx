@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Menu from './Menu';
 
 const CityNotFound = (props) => {
-  const { handleSumbit, handleChange, formValues } = props;
+  const { handleSumbit, handleChange, formValues, selectBoxItem } = props;
   return (
     <div className='city-notFound-container h1'>
       <h1>City Not Found</h1>
@@ -12,6 +12,7 @@ const CityNotFound = (props) => {
         formValues={formValues}
         onSubmit={handleSumbit}
         onChange={handleChange}
+        selectBoxItem={selectBoxItem}
       />
     </div>
   );
