@@ -33,9 +33,15 @@ const Home = (props) => {
         dataCityName={dataWeather.nameCity}
         isFahrenit={isFahrenit}
         selectBoxItem={selectBoxItem}
+        onFahrenheit={onFahrenheit}
+        onCentigrates={onCentigrates}
       />
       <div className='App__container'>
-        <ChangeGrades onFahrenheit={onFahrenheit} onCentigrates={onCentigrates} />
+        <ChangeGrades
+          onFahrenheit={onFahrenheit}
+          onCentigrates={onCentigrates}
+          className='buttons__container'
+        />
         <AnotherDayContainer>
           {
             dataWeekDays.length > 0 &&
@@ -47,6 +53,7 @@ const Home = (props) => {
                 minTemp={item.min_temp}
                 created={item.created}
                 applicableDate={item.applicable_date}
+                weatherStateName={item.weather_state_name}
                 isFahrenit={isFahrenit}
               />
             ))

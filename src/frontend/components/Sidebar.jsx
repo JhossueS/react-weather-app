@@ -38,6 +38,8 @@ class Sidebar extends React.Component {
       dataCityName,
       isFahrenit,
       selectBoxItem,
+      onFahrenheit,
+      onCentigrates
     } = this.props;
 
     return (
@@ -52,6 +54,8 @@ class Sidebar extends React.Component {
               cityName={dataCityName}
               closeMenu
               selectBoxItem={selectBoxItem}
+              onFahrenheit={onFahrenheit}
+              onCentigrates={onCentigrates}
             />
           ) : (
             <WeatherInfo

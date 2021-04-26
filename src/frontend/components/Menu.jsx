@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Selectbox from './Selectbox';
 import '../assets/styles/components/BurgerMenu.scss';
+import ChangeGrades from './ChangeGrades';
 
 class Menu extends React.Component {
 
@@ -39,14 +40,24 @@ class Menu extends React.Component {
       className,
       closeMenu,
       selectBoxItem,
+      onCentigrates,
+      onFahrenheit,
     } = this.props;
 
-    const { citiesList } = this.state
+    const { citiesList } = this.state;
+
+    const screen = window.screen.width;
 
     return (
       <div className={className || 'burgerMenu__container'}>
         {closeMenu && (
           <div className='burgerMenu__container-clear-icon'>
+            { screen < 992 ?
+            (<ChangeGrades
+              onCentigrates={onCentigrates}
+              onFahrenheit={onFahrenheit}
+            />) : null
+            }
             <i
               className='material-icons'
               onClick={handleDisableMenu}

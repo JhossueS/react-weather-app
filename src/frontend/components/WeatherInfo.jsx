@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import dateFormat from '../utils/dateFormat';
+import CloudyContainer from './CloudyContainer';
+import IconGps from './IconGps';
 import '../assets/styles/components/WeatherInfo.scss';
 
 const InfoWeather = (props) => {
@@ -26,26 +28,11 @@ const InfoWeather = (props) => {
         >
           Search For Places
         </button>
-        <div className='infoWeather__container-searchForPlaces-location'>
-          <i className='material-icons'>gps_fixed</i>
-        </div>
+        <IconGps />
       </div>
-
-      <div className='infoWeather__container-cloudy-container'>
-
-        <div className='infoWeather__container-cloudy-container-groupOne'>
-          <i className='material-icons font left'>cloud</i>
-          <i className='material-icons font right'>cloud</i>
-        </div>
-        <div className='infoWeather__container-cloudy-container-groupOne'>
-          <i className='material-icons font top'>cloud</i>
-          <i className='material-icons font bottom'>cloud</i>
-        </div>
-
-      </div>
-
+      <CloudyContainer />
       <div className='infoWeather__container-weather'>
-        <img src={`https://www.metaweather.com/static/img/weather/${weatherStateAbbr}.svg`} alt='' />
+        <img src={`https://www.metaweather.com/static/img/weather/${weatherStateAbbr}.svg`} alt={weatherStateName} />
 
         <div className='infoWeather__container-weather-details'>
           <span className='infoWeather__container-weather-details-number'>{Math.floor(theTemp)}</span>
