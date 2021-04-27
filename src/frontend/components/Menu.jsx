@@ -51,7 +51,12 @@ class Menu extends React.Component {
     return (
       <div className={className || 'burgerMenu__container'}>
         {closeMenu && (
-          <div className='burgerMenu__container-clear-icon'>
+          <div
+            className='burgerMenu__container-clear-icon'
+            style={{
+              justifyContent: screen < 922 ? '' : 'flex-end',
+            }}
+          >
             { screen < 992 ?
             (<ChangeGrades
               onCentigrates={onCentigrates}

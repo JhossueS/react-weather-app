@@ -4,6 +4,7 @@ import dateFormat from '../utils/dateFormat';
 import CloudyContainer from './CloudyContainer';
 import IconGps from './IconGps';
 import '../assets/styles/components/WeatherInfo.scss';
+import getGeolocation from '../utils/getGeolocation';
 
 const InfoWeather = (props) => {
 
@@ -28,7 +29,10 @@ const InfoWeather = (props) => {
         >
           Search For Places
         </button>
-        <IconGps />
+        <IconGps
+          onClick={getGeolocation}
+          color='#E7E7EB'
+        />
       </div>
       <CloudyContainer />
       <div className='infoWeather__container-weather'>
