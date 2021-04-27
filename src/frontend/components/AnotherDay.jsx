@@ -10,6 +10,7 @@ const AnotherDay = (props) => {
     minTemp,
     isFahrenit,
     applicableDate,
+    weatherStateName,
   } = props;
 
   return (
@@ -18,7 +19,7 @@ const AnotherDay = (props) => {
         {dateFormat(applicableDate)}
       </p>
       <figure className='anotherDay__container-img'>
-        <img src={`https://www.metaweather.com/static/img/weather/${weatherStateAbbr}.svg`} alt='' />
+        <img src={`https://www.metaweather.com/static/img/weather/${weatherStateAbbr}.svg`} alt={weatherStateName} />
       </figure>
       <div className='anotherDay__container-temperature'>
         <span>

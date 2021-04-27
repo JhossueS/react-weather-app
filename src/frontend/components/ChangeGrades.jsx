@@ -53,9 +53,10 @@ class ChangeGrades extends Component {
   render() {
 
     const { isButtonActive } = this.state;
+    const { className } = this.props;
 
     return (
-      <div className='buttons__container'>
+      <div className={className}>
         <Button
           classNamesButton={isButtonActive ? this.buttonActive() : this.butttonDisable()}
           type='button'
