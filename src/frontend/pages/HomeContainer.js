@@ -140,7 +140,7 @@ class HomeContainer extends React.Component {
 
   getCityIpUser() {
     getLocactionForIp()
-      .then(res => this.fetchData(res.city))
+      .then((res) => this.fetchData(res.data.city))
   }
 
   render() {
