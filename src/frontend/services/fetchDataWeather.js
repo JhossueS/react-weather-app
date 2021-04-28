@@ -25,9 +25,8 @@ export function fetchDataWeather(nameCity) {
     })
     .catch((err) => err);
 
-};
+}
 
 export default {
   fetchDataWeather,
 };
-

@@ -3,11 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCompass } from '@fortawesome/free-solid-svg-icons';
 
 const IconGps = (props) => {
-  const { color, onClick } = props;
+  const { color, getCityIpUser } = props;
+
   return (
     <div
       className='infoWeather__container-searchForPlaces-location'
-      onClick={onClick}
+      onClick={getCityIpUser}
     >
       <FontAwesomeIcon
         icon={faCompass} size='2x'

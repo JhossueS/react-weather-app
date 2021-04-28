@@ -1,5 +1,6 @@
 import React from 'react';
 import { fetchDataWeather } from '../services/fetchDataWeather';
+import { getLocactionForIp } from '../services/fetchLocationCity';
 import updateGrades from '../utils/updateGrades';
 import Home from './Home';
 import Loading from '../components/Loading';
@@ -14,6 +15,7 @@ class HomeContainer extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.toggleGradesUse = this.toggleGradesUse.bind(this);
     this.selectBoxItem = this.selectBoxItem.bind(this);
+    this.getCityIpUser = this.getCityIpUser.bind(this);
 
     this.state = {
       loading: true,
@@ -134,6 +136,13 @@ class HomeContainer extends React.Component {
     return this.fetchData(idnameCity)
   }
 
+  // get city name for ip
+
+  getCityIpUser() {
+    getLocactionForIp()
+      .then(res => this.fetchData(res.city))
+  }
+
   render() {
     const { form, loading, data, isFahrenit } = this.state;
     this.saveCitiesList();
@@ -163,6 +172,7 @@ class HomeContainer extends React.Component {
           onCentigrates={this.toggleGradesUse}
           isFahrenit={isFahrenit}
           selectBoxItem={this.selectBoxItem}
+          getCityIpUser={this.getCityIpUser}
         />
       </>
     );

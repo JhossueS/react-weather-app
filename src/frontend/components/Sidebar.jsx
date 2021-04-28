@@ -39,7 +39,8 @@ class Sidebar extends React.Component {
       isFahrenit,
       selectBoxItem,
       onFahrenheit,
-      onCentigrates
+      onCentigrates,
+      getCityIpUser,
     } = this.props;
 
     return (
@@ -66,6 +67,7 @@ class Sidebar extends React.Component {
               weatherStateAbbr={dataWeatherToday.weather_state_abbr}
               applicableDate={dataWeatherToday.applicable_date}
               isFahrenit={isFahrenit}
+              getCityIpUser={getCityIpUser}
             />
           )
         }
