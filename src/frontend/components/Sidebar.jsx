@@ -57,6 +57,7 @@ class Sidebar extends React.Component {
               selectBoxItem={selectBoxItem}
               onFahrenheit={onFahrenheit}
               onCentigrates={onCentigrates}
+              isFahrenit={isFahrenit}
             />
           ) : (
             <WeatherInfo

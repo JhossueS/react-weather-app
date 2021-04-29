@@ -42,6 +42,7 @@ class Menu extends React.Component {
       selectBoxItem,
       onCentigrates,
       onFahrenheit,
+      isFahrenit,
     } = this.props;
 
     const { citiesList } = this.state;
@@ -61,6 +62,7 @@ class Menu extends React.Component {
             (<ChangeGrades
               onCentigrates={onCentigrates}
               onFahrenheit={onFahrenheit}
+              isFahrenit={isFahrenit}
             />) : null
             }
             <i

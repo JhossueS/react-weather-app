@@ -65,9 +65,9 @@ class ChangeGrades extends Component {
           °C
         </Button>
         <Button
-          classNamesButton={isButtonActive ? this.butttonDisable() : this.buttonActive()}
+          classNamesButton={isButtonActive || this.props.isFahrenit ? this.butttonDisable() : this.buttonActive()}
           type='button'
-          onclick={isButtonActive ? this.handleActiveFahrenheit : null}
+          onclick={isButtonActive || this.props.isFahrenit? this.handleActiveFahrenheit : null}
         >
           °F
         </Button>
