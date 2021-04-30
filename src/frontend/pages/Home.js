@@ -9,6 +9,7 @@ import AnotherDay from '../components/AnotherDay';
 import AnotherDayContainer from '../components/AnotherDayContainer';
 import HighlightsContainer from '../components/HighlightsContainer';
 import { AppContext } from '../Context/HomeProvider';
+import Loading from '../components/Loading';
 
 class Home extends React.Component {
 
@@ -24,16 +25,16 @@ class Home extends React.Component {
     getCityIpUser,
   } = props; */
   render() {
-    console.log(this.context)
-
-    const { data: {
-      dataWeekDays, dataToday
-      }
+    const {
+      data: {
+        dataWeekDays,
+        dataToday,
+      },
     } = this.context.stateGlobal;
     console.log(dataWeekDays, dataToday)
     return (
     <div className='App'>
-      {/* <Sidebar /> */}
+      <Sidebar />
     </div>
     );
 

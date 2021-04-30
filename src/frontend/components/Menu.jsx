@@ -1,8 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Selectbox from './Selectbox';
 import '../assets/styles/components/BurgerMenu.scss';
 import ChangeGrades from './ChangeGrades';
+import { AppContext } from '../Context/HomeProvider';
 
 class Menu extends React.Component {
 
@@ -14,6 +14,7 @@ class Menu extends React.Component {
     };
   }
 
+  // get data of localStorage add state
   getListOfLocalStorage() {
     if (this.storage.length) {
       return this.setState({
@@ -31,22 +32,15 @@ class Menu extends React.Component {
   }
 
   render() {
-
-    const {
-      handleDisableMenu,
-      onSubmit,
-      onChange,
-      formValues,
-      className,
-      closeMenu,
-      selectBoxItem,
-      onCentigrates,
-      onFahrenheit,
-      isFahrenit,
-    } = this.props;
-
+    const { closeMenu,  handleDisableMenu, className } = this.props;
     const { citiesList } = this.state;
-
+    const {
+      handleSumbit,
+      handleChange,
+      stateGlobal: {
+        form
+      },
+    } = this.context;
     const screen = window.screen.width;
 
     return (
@@ -76,16 +70,16 @@ class Menu extends React.Component {
           </div>
         )}
         <div className='burgerMenu__container-searchBar'>
-          <form onSubmit={onSubmit}>
+          <form onSubmit={handleSumbit}>
             <div className='burgerMenu__container-searchBar-groupOne'>
               <i className='material-icons search'>search</i>
               <input
                 type='text'
                 name='cityName'
                 placeholder='search locaction'
-                onChange={onChange}
+                onChange={handleChange}
                 className='input text'
-                value={formValues?.cityName}
+                value={form?.cityName}
               />
             </div>
             <input
@@ -96,20 +90,12 @@ class Menu extends React.Component {
             />
           </form>
         </div>
-        <Selectbox citiesList={citiesList} selectBoxItem={selectBoxItem} />
+        <Selectbox citiesList={citiesList} />
       </div>
     );
   }
-
 }
 
-Menu.propTypes = {
-  handleDisableMenu: PropTypes.func,
-  onSubmit: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired,
-  formValues: PropTypes.object.isRequired,
-  className: PropTypes.string,
-  closeMenu: PropTypes.bool,
-};
+Menu.contextType = AppContext;
 
 export default Menu;

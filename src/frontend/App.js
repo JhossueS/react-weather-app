@@ -1,16 +1,17 @@
 import React from 'react';
-import HomeContainer from './pages/HomeContainer';
+import Home from './pages/Home';
+import { HomeProvider } from './Context/HomeProvider';
 
 import './assets/styles/App.scss';
 import './assets/styles/mediaQuerys.scss';
 
-class App extends React.Component {
+const App = () => (
+  <HomeProvider>
+    <Home />
+  </HomeProvider>
+)
 
-  render() {
-    return (
-      <HomeContainer />
-    );
-  }
-}
+
+
 
 export default App;
