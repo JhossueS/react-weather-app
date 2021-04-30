@@ -8,9 +8,11 @@ import Sidebar from '../components/Sidebar';
 import AnotherDay from '../components/AnotherDay';
 import AnotherDayContainer from '../components/AnotherDayContainer';
 import HighlightsContainer from '../components/HighlightsContainer';
+import { AppContext } from '../Context/HomeProvider';
 
-const Home = (props) => {
-  const {
+class Home extends React.Component {
+
+  /* const {
     handleSumbit,
     formValues,
     handleChange,
@@ -20,30 +22,40 @@ const Home = (props) => {
     isFahrenit,
     selectBoxItem,
     getCityIpUser,
-  } = props;
+  } = props; */
+  render() {
+    console.log(this.context)
 
-  const { dataWeekDays, dataToday } = dataWeather;
-
-  return (
+    const { data: {
+      dataWeekDays, dataToday
+      }
+    } = this.context.stateGlobal;
+    console.log(dataWeekDays, dataToday)
+    return (
     <div className='App'>
-      <Sidebar
-        onSubmit={handleSumbit}
-        formValues={formValues}
-        handleChange={handleChange}
-        dataWeatherToday={dataWeather.dataToday}
-        dataCityName={dataWeather.nameCity}
-        isFahrenit={isFahrenit}
-        selectBoxItem={selectBoxItem}
-        onFahrenheit={onFahrenheit}
-        onCentigrates={onCentigrates}
-        getCityIpUser={getCityIpUser}
-      />
+      {/* <Sidebar /> */}
+    </div>
+    );
+
+  }
+}
+
+Home.contextType = AppContext;
+
+Home.propTpyes = {
+  handleSumbit: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  formValues: PropTypes.object.isRequired,
+  dataWeather: PropTypes.object.isRequired,
+};
+
+export default Home;
+
+
+{/* <div className='App'>
+      <Sidebar /> 
       <div className='App__container'>
-        <ChangeGrades
-          onFahrenheit={onFahrenheit}
-          onCentigrates={onCentigrates}
-          className='buttons__container'
-        />
+        <ChangeGrades className='buttons__container' />
         <AnotherDayContainer>
           {
             dataWeekDays.length > 0 &&
@@ -91,16 +103,4 @@ const Home = (props) => {
         </HighlightsContainer>
         <AboutProject />
       </div>
-    </div>
-  );
-
-};
-
-Home.propTpyes = {
-  handleSumbit: PropTypes.func.isRequired,
-  handleChange: PropTypes.func.isRequired,
-  formValues: PropTypes.object.isRequired,
-  dataWeather: PropTypes.object.isRequired,
-};
-
-export default Home;
+        </div> */}
