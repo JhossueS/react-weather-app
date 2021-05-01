@@ -45,7 +45,8 @@ export class HomeProvider extends Component {
           return this.setState({
             data: dataWeather,
             loading: false,
-            isFahrenit: false
+            isFahrenit: false,
+            isCentigrade: true,
           });
         }
 
@@ -53,6 +54,8 @@ export class HomeProvider extends Component {
           data: [],
           loading: false,
           error: true,
+          isFahrenit: false,
+          isCentigrade: true,
         })
       })
       .catch((e) => console.error(e))
