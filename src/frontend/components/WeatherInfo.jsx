@@ -21,8 +21,6 @@ class InfoWeather extends React.Component {
 
     } = this.context;
 
-    console.log(getCityIpUser)
-
     return (
       <div className='infoWeather__container'>
         <div className='infoWeather__container-searchForPlaces'>
