@@ -1,5 +1,4 @@
 import React from 'react';
-import Proptypes from 'prop-types';
 import WeatherInfo from './WeatherInfo';
 import Menu from './Menu';
 
@@ -30,59 +29,17 @@ class Sidebar extends React.Component {
   render() {
     const { menu } = this.state;
 
-    const {
-      onSubmit,
-      handleChange,
-      formValues,
-      dataWeatherToday,
-      dataCityName,
-      isFahrenit,
-      selectBoxItem,
-      onFahrenheit,
-      onCentigrates,
-      getCityIpUser,
-    } = this.props;
-
     return (
       <>
         {
-          menu ? (
-            <Menu
-              handleDisableMenu={this.handleDisableMenu}
-              onSubmit={onSubmit}
-              onChange={handleChange}
-              formValues={formValues}
-              cityName={dataCityName}
-              closeMenu
-              selectBoxItem={selectBoxItem}
-              onFahrenheit={onFahrenheit}
-              onCentigrates={onCentigrates}
-              isFahrenit={isFahrenit}
-            />
-          ) : (
-            <WeatherInfo
-              handleActiveMenu={this.handleActiveMenu}
-              nameCity={dataCityName}
-              weatherStateName={dataWeatherToday.weather_state_name}
-              theTemp={dataWeatherToday.the_temp}
-              weatherStateAbbr={dataWeatherToday.weather_state_abbr}
-              applicableDate={dataWeatherToday.applicable_date}
-              isFahrenit={isFahrenit}
-              getCityIpUser={getCityIpUser}
-            />
-          )
+          menu ? <Menu
+          closeMenu
+          handleDisableMenu={this.handleDisableMenu}
+          /> : <WeatherInfo handleActiveMenu={this.handleActiveMenu} />
         }
       </>
     );
   }
 }
-
-Sidebar.propTypes = {
-  onSubmit: Proptypes.func.isRequired,
-  handleChange: Proptypes.func.isRequired,
-  formValues: Proptypes.object.isRequired,
-  dataCityName: Proptypes.string.isRequired,
-  dataWeatherToday: Proptypes.object.isRequired,
-};
 
 export default Sidebar;

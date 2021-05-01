@@ -39,7 +39,6 @@ AnotherDay.propTypes = {
   maxTemp: PropTypes.number.isRequired,
   minTemp: PropTypes.number.isRequired,
   weatherStateAbbr: PropTypes.string.isRequired,
-  //applicable_date: PropTypes.string.isRequired,
 };
 
 export default AnotherDay;

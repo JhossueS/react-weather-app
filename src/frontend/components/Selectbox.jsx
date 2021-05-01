@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import '../assets/styles/components/Selectbox.scss'
+import { AppContext } from '../Context/HomeProvider';
 
 class Selectbox extends React.Component {
 
@@ -24,7 +25,8 @@ class Selectbox extends React.Component {
   render() {
 
     const { isActive } = this.state;
-    const { citiesList, selectBoxItem} = this.props;
+    const { citiesList } = this.props;
+    const { selectBoxItem } = this.context;
 
     const toggleClassSelect = classNames('select-box-selects', {
       active: isActive,
@@ -71,5 +73,7 @@ class Selectbox extends React.Component {
     );
   }
 }
+
+Selectbox.contextType = AppContext;
 
 export default Selectbox;

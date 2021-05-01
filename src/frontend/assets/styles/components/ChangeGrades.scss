@@ -13,19 +13,19 @@
     border-radius: 5rem;
     margin: 0 1rem;
     border: 1px solid transparent;
+    cursor: pointer;
     font-size: $fontSizeNormal;
+    background-color: $colorFont;
   }
 
   &-grades:focus {
     outline: none;
   }
 
-  &-grades.isDisable {
-    cursor: pointer;
+  &-grades:disabled {
+    color: $colorFont;
+    cursor: initial;
     background-color: #585676;
   }
 
-  &-grades.isActive {
-    background-color: $colorFont;
-  }
 }
