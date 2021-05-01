@@ -7,6 +7,7 @@ import Sidebar from '../components/Sidebar';
 import AnotherDay from '../components/AnotherDay';
 import AnotherDayContainer from '../components/AnotherDayContainer';
 import HighlightsContainer from '../components/HighlightsContainer';
+import CityNotFound from '../components/CityNotFound';
 import { AppContext } from '../Context/HomeProvider';
 
 class Home extends React.Component {
@@ -76,6 +77,12 @@ class Home extends React.Component {
   }
 
   render() {
+    const { data } = this.context.stateGlobal;
+    if (!data) {
+      return (
+        <CityNotFound />
+      )
+    }
 
     return (
     <div className='App'>
