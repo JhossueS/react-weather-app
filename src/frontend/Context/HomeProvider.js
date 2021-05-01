@@ -150,6 +150,7 @@ export class HomeProvider extends Component {
 
     if (loading) return <Loading />
 
+
     return (
       <AppContext.Provider value={providerState}>
         {this.props.children}
