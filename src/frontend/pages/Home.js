@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Title from '../components/Title';
 import Highlights from '../components/Highlights';
 import ChangeGrades from '../components/ChangeGrades';
@@ -9,15 +8,42 @@ import AnotherDay from '../components/AnotherDay';
 import AnotherDayContainer from '../components/AnotherDayContainer';
 import HighlightsContainer from '../components/HighlightsContainer';
 import { AppContext } from '../Context/HomeProvider';
-import Loading from '../components/Loading';
 
 class Home extends React.Component {
 
+  setAnotherDay() {
+    const { data: {
+      dataWeekDays,
+      isFahrenit,
+      }
+    } = this.context.stateGlobal;
+
+    console.log(dataWeekDays)
+
+    return (
+      <AnotherDayContainer>
+        {
+          dataWeekDays.length > 0 &&
+          dataWeekDays.map((item) => (
+            <AnotherDay
+              key={item.id}
+              weatherStateAbbr={item.weather_state_abbr}
+              maxTemp={item.max_temp}
+              minTemp={item.min_temp}
+              created={item.created}
+              applicableDate={item.applicable_date}
+              weatherStateName={item.weather_state_name}
+              isFahrenit={isFahrenit}
+            />
+          ))
+        }
+      </AnotherDayContainer>
+    )
+  }
   render() {
     const {
       data: {
         dataWeekDays,
-        dataToday,
       },
     } = this.context.stateGlobal;
 
@@ -26,6 +52,10 @@ class Home extends React.Component {
       <Sidebar />
       <div className='App__container'>
         <ChangeGrades className='buttons__container' />
+        {this.setAnotherDay()}
+        <Title className='App_title__container' >
+          <h2>Today&apos;s Highlights</h2>
+        </Title>
       </div>
     </div>
     );
@@ -39,7 +69,7 @@ export default Home;
 
 
 {/* <div className='App'>
-      <Sidebar /> 
+      <Sidebar />
       <div className='App__container'>
         <ChangeGrades className='buttons__container' />
         <AnotherDayContainer>
