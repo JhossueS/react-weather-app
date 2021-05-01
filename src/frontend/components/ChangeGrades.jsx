@@ -1,73 +1,39 @@
-/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import classnames from 'classnames';
 import Button from './Button';
+import { AppContext } from '../Context/HomeProvider';
 
 import '../assets/styles/components/ChangeGrades.scss';
 
 class ChangeGrades extends Component {
   constructor(props) {
     super(props);
-
-    this.handleActiveCentigrades = this.handleActiveCentigrades.bind(this);
-    this.handleActiveFahrenheit = this.handleActiveFahrenheit.bind(this);
-
-    // state of menu on or off
-    this.state = {
-      isButtonActive: true,
-    };
-  }
-
-  //classname to change active button Degrees Centigrade
-  buttonActive() {
-    this.classActive = classnames('buttons__container-grades', {
-      isActive: true,
-    });
-    return this.classActive;
-  }
-
-  butttonDisable() {
-    this.classDisable = classnames('buttons__container-grades', {
-      isDisable: true,
-    });
-    return this.classDisable;
+    this.handleToggleGrades = this.handleToggleGrades.bind(this);
   }
 
   //handle Defrees centigrade or Fahrenheit
-
-  handleActiveCentigrades() {
-    this.props.onCentigrates();
-    this.setState({
-      isButtonActive: true,
-    });
-  }
-
-  handleActiveFahrenheit() {
-    this.props.onFahrenheit();
-    this.setState({
-      isButtonActive: false,
-    });
+  handleToggleGrades() {
+    this.context.toggleGradesUse();
   }
 
   render() {
-
-    const { isButtonActive } = this.state;
+    const { stateGlobal } = this.context;
     const { className } = this.props;
 
     return (
       <div className={className}>
         <Button
-          classNamesButton={isButtonActive ? this.buttonActive() : this.butttonDisable()}
+          classNamesButton='buttons__container-grades'
+          disabled={stateGlobal.isCentigrade}
           type='button'
-          onclick={isButtonActive ? null : this.handleActiveCentigrades}
+          onclick={this.handleToggleGrades}
         >
           °C
         </Button>
         <Button
-          classNamesButton={isButtonActive || this.props.isFahrenit ? this.butttonDisable() : this.buttonActive()}
+          classNamesButton='buttons__container-grades'
           type='button'
-          onclick={isButtonActive || this.props.isFahrenit? this.handleActiveFahrenheit : null}
+          onclick={this.handleToggleGrades}
+          disabled={stateGlobal.isFahrenit}
         >
           °F
         </Button>
@@ -76,9 +42,6 @@ class ChangeGrades extends Component {
   }
 }
 
-ChangeGrades.propTypes = {
-  onFahrenheit: PropTypes.func.isRequired,
-  onCentigrates: PropTypes.func.isRequired,
-};
+ChangeGrades.contextType = AppContext;
 
 export default ChangeGrades;

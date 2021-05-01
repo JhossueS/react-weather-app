@@ -25,6 +25,7 @@ export class HomeProvider extends Component {
       loading: true,
       error: null,
       isFahrenit: false,
+      isCentigrade: true,
     }
   }
 
@@ -54,7 +55,7 @@ export class HomeProvider extends Component {
           error: true,
         })
       })
-      .catch((e) => console.log(e))
+      .catch((e) => console.error(e))
   }
 
   // handle form
@@ -65,8 +66,6 @@ export class HomeProvider extends Component {
     this.setState({
       loading: true,
     });
-
-    console.log(cityName)
 
     this.fetchData(cityName)
   }
@@ -81,11 +80,12 @@ export class HomeProvider extends Component {
 
   // toggleGares
   toggleGradesUse() {
-    const { data, isFahrenit } = this.state;
+    const { data, isFahrenit, isCentigrade } = this.state;
 
     const updatedGrades = updateGrades(data, isFahrenit);
     this.setState({
       isFahrenit: !isFahrenit,
+      isCentigrade: !isCentigrade,
       data: {
         ...data,
         dataToday: updatedGrades.updateGradeToday,
@@ -131,7 +131,6 @@ export class HomeProvider extends Component {
 
    // get city name for ip
   getCityIpUser() {
-    console.log('entre aqui')
     getLocactionForIp()
       .then((res) => this.fetchData(res.data.city))
   }

@@ -13,17 +13,6 @@ import Loading from '../components/Loading';
 
 class Home extends React.Component {
 
-  /* const {
-    handleSumbit,
-    formValues,
-    handleChange,
-    dataWeather,
-    onFahrenheit,
-    onCentigrates,
-    isFahrenit,
-    selectBoxItem,
-    getCityIpUser,
-  } = props; */
   render() {
     const {
       data: {
@@ -31,10 +20,13 @@ class Home extends React.Component {
         dataToday,
       },
     } = this.context.stateGlobal;
-    console.log(dataWeekDays, dataToday)
+
     return (
     <div className='App'>
       <Sidebar />
+      <div className='App__container'>
+        <ChangeGrades className='buttons__container' />
+      </div>
     </div>
     );
 
@@ -42,13 +34,6 @@ class Home extends React.Component {
 }
 
 Home.contextType = AppContext;
-
-Home.propTpyes = {
-  handleSumbit: PropTypes.func.isRequired,
-  handleChange: PropTypes.func.isRequired,
-  formValues: PropTypes.object.isRequired,
-  dataWeather: PropTypes.object.isRequired,
-};
 
 export default Home;
 

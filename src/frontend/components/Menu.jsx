@@ -31,20 +31,12 @@ class Menu extends React.Component {
     this.getListOfLocalStorage();
   }
 
-  render() {
-    const { closeMenu,  handleDisableMenu, className } = this.props;
-    const { citiesList } = this.state;
-    const {
-      handleSumbit,
-      handleChange,
-      stateGlobal: {
-        form
-      },
-    } = this.context;
+  setViewOptionsMenu() {
+    const {closeMenu, handleDisableMenu } = this.props;
     const screen = window.screen.width;
 
     return (
-      <div className={className || 'burgerMenu__container'}>
+      <>
         {closeMenu && (
           <div
             className='burgerMenu__container-clear-icon'
@@ -53,11 +45,7 @@ class Menu extends React.Component {
             }}
           >
             { screen < 992 ?
-            (<ChangeGrades
-              onCentigrates={onCentigrates}
-              onFahrenheit={onFahrenheit}
-              isFahrenit={isFahrenit}
-            />) : null
+            (<ChangeGrades />) : null
             }
             <i
               className='material-icons'
@@ -69,6 +57,25 @@ class Menu extends React.Component {
             </i>
           </div>
         )}
+      </>
+    )
+  }
+
+  render() {
+    const { className } = this.props;
+    const { citiesList } = this.state;
+    const {
+      handleSumbit,
+      handleChange,
+      stateGlobal: {
+        form
+      },
+    } = this.context;
+    
+
+    return (
+      <div className={className || 'burgerMenu__container'}>
+       {this.setViewOptionsMenu()}
         <div className='burgerMenu__container-searchBar'>
           <form onSubmit={handleSumbit}>
             <div className='burgerMenu__container-searchBar-groupOne'>
