@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: './src/frontend/index.js',
@@ -55,12 +56,21 @@ module.exports = {
       inject: true,
       template: './public/index.html',
       filename: './index.html',
+      favicon: './src/frontend/assets/images/favicon-32x32.png'
     }),
 
     new MiniCssExtractPlugin({
       filename: 'assets/app.[contenthash].css',
     }),
     new CleanWebpackPlugin(),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, 'src', 'frontend/assets/images/'),
+          to: 'assets/images',
+        }
+      ]
+    })
   ],
   devServer: {
     contentBase: './dist',

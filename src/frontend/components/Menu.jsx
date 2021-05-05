@@ -71,11 +71,10 @@ class Menu extends React.Component {
         form
       },
     } = this.context;
-    
 
     return (
       <div className={className || 'burgerMenu__container'}>
-       {this.setViewOptionsMenu()}
+        {this.setViewOptionsMenu()}
         <div className='burgerMenu__container-searchBar'>
           <form onSubmit={handleSumbit}>
             <div className='burgerMenu__container-searchBar-groupOne'>
@@ -94,6 +93,7 @@ class Menu extends React.Component {
               className='input submit'
               value='search'
               placeholder='Search Location'
+              disabled={!form.cityName.length}
             />
           </form>
         </div>

@@ -67,6 +67,11 @@
     cursor: pointer;
     padding: 1rem;
   }
+
+  &.submit:disabled {
+    background-color: #3c48e950;
+    cursor: auto;
+  }
 }
 
 .search {
